@@ -1,0 +1,16 @@
+.hero_section{
+    margin-top: 50px;
+}
+
+
+/* .hero_section::before{
+    content: "";
+    background: url('./../assets/bg1.jpg') no-repeat center center/cover;
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    opacity: .86;
+} */
