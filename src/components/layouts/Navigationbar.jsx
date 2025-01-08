@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/NavigationbarStyle.css";
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Logo from "./../../assets/images/itsense_logo2.png";
+import Logo from "./../../assets/images/fitsense_logo2.png";
 
 const Navigationbar = () => {
     return (
