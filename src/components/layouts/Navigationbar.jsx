@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/NavigationbarStyle.css";
-import { Container, Nav, Navbar, Button } from "react-bootstrap";
+import { Container, Nav, Navbar, Button, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Logo from "./../../assets/images/fitsense_logo2.png";
 
-const Navigationbar = () => {
+const Navigationbar = ({ navbarStyle }) => {
+    const [isSticky, setIsSticky] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 3) {
+                setIsSticky(true);
+            } else {
+                setIsSticky(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
+
     return (
-        <header>
-            <Navbar expand="lg">
+        <header className={`${isSticky ? "header-navbar sticky" : "header-navbar"} ${navbarStyle}`}>
+            <Navbar expand="lg" >
                 <Container>
                     <Navbar.Brand href="#home">
                         <Link to="/" className="logo">
@@ -42,10 +61,14 @@ const Navigationbar = () => {
                                 </div>
                             </Nav.Link>
 
-                            <Button variant="outline-success" className="sign-up-btn">
-                                Sign Up
-                            </Button>
-
+                            <Link to="/signup">
+                                <Button
+                                    variant="outline-success"
+                                    className="sign-up-btn"
+                                >
+                                    Sign Up
+                                </Button>
+                            </Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

@@ -1,17 +1,14 @@
 import React from "react";
-import Footer from "./Footer";
+import Footer from './Footer.jsx';
 import Navigationbar from "./Navigationbar";
 import './../../styles/LayoutStyle.css';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, showFooter = true, navbarStyle = "" }) => {
     return (
         <>
-            <div className="banner-section-outer">
-                <Navigationbar />
-                <div>{children}</div>
-            </div>
-
-        {/* <Footer /> */}
+            <Navigationbar navbarStyle={navbarStyle} />
+            <main>{children}</main>
+            {showFooter && <Footer />}
         </>
     );
 };

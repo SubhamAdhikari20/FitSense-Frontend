@@ -1,14 +1,13 @@
-import React from "react"
-import { Col, Container, Row, Carousel, Figure, Button } from 'react-bootstrap'
-import Bg from './../../assets/images/bg1.jpg';
+import React from "react";
+import { Col, Container, Row, Carousel, Figure, Button } from "react-bootstrap";
+import Bg from "./../../assets/images/bg1.jpg";
 import Typed from "typed.js";
 import { useEffect, useState } from "react";
-import "./../../styles/Section1Style.css";
-import Video_img from './../../assets/images/video_play_img.png';
+import "./../../styles/HomeSection1Style.css";
+import Video_img from "./../../assets/images/video_play_img.png";
+import { Link } from "react-router-dom";
 
-
-const Section1 = () => {
-
+const HomeSection1 = () => {
     // useEffect(() => {
     //     // Initialize Typed.js
     //     const typed = new Typed("#element", {
@@ -24,7 +23,6 @@ const Section1 = () => {
     //     };
     // }, []);
 
-
     const [index, setIndex] = useState(0);
     const handleSelect = (selectedIndex) => {
         setIndex(selectedIndex);
@@ -35,8 +33,18 @@ const Section1 = () => {
             <Container>
                 {/* <img src={Bg} className="bg_outer" /> */}
                 <Row>
-                    <Col lg={12} className="mb-5 mb-lg-0 col-md-12 col-sm-12 col-xs-12 column1">
-                        <Carousel activeIndex={index} onSelect={handleSelect} interval={3000} pause="hover" controls={false} className="slider">
+                    <Col
+                        lg={12}
+                        className="mb-5 mb-lg-0 col-md-12 col-sm-12 col-xs-12 column1"
+                    >
+                        <Carousel
+                            activeIndex={index}
+                            onSelect={handleSelect}
+                            interval={2500}
+                            pause="hover"
+                            controls={false}
+                            className="slider"
+                        >
                             <Carousel.Item>
                                 <div className="text-slide">
                                     <div className="line mb-0"></div>
@@ -63,7 +71,6 @@ const Section1 = () => {
                             </Carousel.Item>
                         </Carousel>
 
-
                         {/* <div className="position:relative">
                             <div>
                                 <h1>
@@ -82,20 +89,19 @@ const Section1 = () => {
                             </div> */}
 
                         {/* </div> */}
-
                     </Col>
 
-                    <Col>
-                        <div className="banner_video position-relative" >
-                            <a href="https://video-previews.elements.envatousercontent.com/h264-video-previews/9b19c081-53dc-4345-a05e-0c9a4a52f3e6/26111213.mp4" target="_blank">
+                    <Col className="p-0 column2">
+                        <div className="banner-video position-relative">
+                            <Link to="https://video-previews.elements.envatousercontent.com/h264-video-previews/9b19c081-53dc-4345-a05e-0c9a4a52f3e6/26111213.mp4" target="_blank" 
+                            className="video-link">
                                 <Figure className="video-img mb-0">
                                     <Figure.Image
                                         alt="171x180"
                                         src={Video_img}
-
                                     />
                                 </Figure>
-                            </a>
+                            </Link>
                         </div>
                     </Col>
 
@@ -104,20 +110,18 @@ const Section1 = () => {
 
                         </div>
                     </Col> */}
-
-
-
                 </Row>
 
                 <Row>
-                    <Col>
-                        <Button variant="secondary" className="get-started-btn">Get Started</Button>
+                    <Col className="row2-column1">
+                        <Button variant="secondary" className="get-started-btn">
+                            Get Started
+                        </Button>
                     </Col>
                 </Row>
-
             </Container>
         </section>
-    )
-}
+    );
+};
 
-export default Section1
+export default HomeSection1;

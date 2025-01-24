@@ -1,17 +1,19 @@
-header .navbar {
-    /* position: absolute; */
-    width: 100%;
-    background-color: transparent;
-    z-index: 1000;
-}
-
-/* header .navbar .container{
-    margin: auto 150px;
+/* header{
     
 } */
 
-header .navbar.sticky {
-    position: fixed;
+.header-navbar {
+    position: sticky;
+    width: 100%;
+    z-index: 1100;
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+
+.header-navbar.sticky {
+    position: sticky;
+    z-index: 1100;
     width: 100%;
     left: 0;
     top: 0;
@@ -31,27 +33,32 @@ header .navbar.sticky {
     box-shadow: 0 2px 3px rgba(96, 96, 96, 0.1);
 }
 
+
+.header-navbar.sticky .nav-link {
+    color: #333; /* Adjust text color */
+}
+
 @keyframes stickyTransition {
-    0% {
+    /* 0% {
         opacity: 0;
         -webkit-transform: translate3d(1, -100%, 0);
         transform: translate3d(1, -100%, 0);
-    }
+    } */
 
     100% {
         opacity: 1;
-        -webkit-transform: none;
-        transform: none;
+        -webkit-transform: translate3d(1, -100%, 0);
+        transform: translate3d(1, -100%, 0);
     }
 }
 
-header .logo img {
+.header-navbar .logo img {
     width: auto;
     max-width: inherit;
     max-height: 80px;
 }
 
-header .nav-link {
+.header-navbar .nav-link {
     display: inline;
     justify-content: center;
     color: var(--white);
@@ -66,20 +73,20 @@ header .nav-link {
     -ms-transition: all 15ms ease-in-out;
 }
 
-header .sticky .nav-link {
+.header-navbar .sticky .nav-link {
     color: var(--white);
 }
 
-header .nav-link:hover {
+.header-navbar .nav-link:hover {
     color: var(--yellow);
 }
 
-header .cart {
+.header-navbar .cart {
     position: relative;
     top: -0.3rem;
 }
 
-header .roundpoint {
+.header-navbar .roundpoint {
     width: 16px;
     height: 16px;
     background: var(--light-red);
@@ -94,7 +101,7 @@ header .roundpoint {
     right: -8px;
 }
 
-header .sign-up-btn {
+.header-navbar .sign-up-btn {
     position: relative;
     top: -3px;
     margin: 0px 15px;
@@ -104,12 +111,18 @@ header .sign-up-btn {
     --bs-btn-hover-bg: #8cec12;
     --bs-btn-hover-border-color: #00ff1c;
     border-width: 1.3px;
+    
+    box-shadow: 
+        -2px -2px 2px rgb(43, 255, 0),
+        2px -2px 2px rgb(43, 255, 0),
+        -2px 2px 2px rgb(43, 255, 0),
+        2px 2px 2px rgb(43, 255, 0);
 }
 
 /* Media Query CSS */
 
 @media screen and (max-width: 767px) {
-    .navbar-collapse {
+    .header-navbar .navbar-collapse {
         width: 45%;
         top: 78px;
         padding: 0;
@@ -118,11 +131,11 @@ header .sign-up-btn {
 }
 
 @media screen and (max-width: 992px) {
-    header .navbar {
+    .header-navbar .navbar {
         background-color: var(--white);
     }
 
-    header .navbar-collapse {
+    .header-navbar .navbar-collapse {
         background: var(--e-global-color-primary);
         position: absolute;
         right: 40px;
@@ -134,14 +147,14 @@ header .sign-up-btn {
         border-radius: 25px;
     }
 
-    header .navbar-collapse ul {
+    .header-navbar .navbar-collapse ul {
         align-items: unset;
         text-align: unset;
         margin-left: 0;
     }
     
 
-    header .navbar-toggler {
+    .header-navbar .navbar-toggler {
         position: absolute;
         /* top: px; */
         right: 40px;
@@ -151,69 +164,69 @@ header .sign-up-btn {
         height: 22px;
     }
 
-    header .navbar-toggler:focus {
+    .header-navbar .navbar-toggler:focus {
         outline: none;
         box-shadow: none;
     }
 
-    header .navbar-toggler-icon {
+    .header-navbar .navbar-toggler-icon {
         width: 2.5rem;
         height: 2.5rem;
     }
 
-    header .nav-link {
+    .header-navbar .nav-link {
         color: var(--white);
         padding: 1rem !important;
     }
 
-    header .navbar-nav {
+    .header-navbar .navbar-nav {
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    header .navbar-toggler span.navbar-toggler-icon {
+    .header-navbar .navbar-toggler span.navbar-toggler-icon {
         transition: all 0.15s;
     }
 
-    header .navbar-toggler span:nth-child(1) {
+    .header-navbar .navbar-toggler span:nth-child(1) {
         transform: rotate(45deg);
         transform-origin: 0% 80%;
     }
 
-    header .navbar-toggler span.navbar-toggler-icon:first-child {
+    .header-navbar .navbar-toggler span.navbar-toggler-icon:first-child {
         margin-top: 0;
     }
 
-    header .navbar-toggler.collapsed span:nth-child(1) {
+    .header-navbar .navbar-toggler.collapsed span:nth-child(1) {
         transform: rotate(0deg);
     }
 
-    header .navbar-toggler.collapsed span:nth-child(2) {
+    .header-navbar .navbar-toggler.collapsed span:nth-child(2) {
         opacity: 1;
     }
     
-    header .navbar-toggler span:nth-child(2) {
+    .header-navbar .navbar-toggler span:nth-child(2) {
         opacity: 0;
     }
 
-    header .navbar-toggler.collapsed span:nth-child(3) {
+    .header-navbar .navbar-toggler.collapsed span:nth-child(3) {
         transform: rotate(0deg);
     }
 
-    header .navbar-toggler span:nth-child(3) {
+    .header-navbar .navbar-toggler span:nth-child(3) {
         transform: rotate(-45deg);
         transform-origin: 15% 100%;
     }
 
-    header .collapse:not(.show) {
+    .header-navbar .collapse:not(.show) {
         display: none;
     }
 
 
 
 
-    /* header .navbar-light .navbar-toggler-icon {
+    /* .header-navbar .navbar-light .navbar-toggler-icon {
         background: var(--light-black);
         height: 2px;
         margin: 7px 0 0 0;

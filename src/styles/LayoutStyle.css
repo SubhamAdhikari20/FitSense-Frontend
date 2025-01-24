@@ -1,11 +1,4 @@
-.banner-section-outer {
-    background: url('./../assets/images/bg1.jpg') no-repeat center center/cover;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    height: 1150px; 
-    width: 100%;
-    z-index: -1;
-    opacity: .86;
+main{
+    margin: 0;
+    padding: 0;
 }
-

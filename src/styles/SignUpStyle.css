@@ -1,0 +1,103 @@
+.signup-navbar .nav-link {
+    color: #333;
+}
+
+.signup-navbar .nav-link:hover {
+    color: rgb(154, 150, 150);
+}
+
+
+@media screen and (max-width: 992px) {
+    .signup-navbar .navbar {
+        background-color: var(--white);
+    }
+
+    .signup-navbar .navbar-collapse {
+        background: var(--e-global-color-primary);
+        position: absolute;
+        right: 40px;
+        width: 40%;
+        top: 85px;
+        z-index: 16;
+        padding: 0;
+        height: 55vh;
+        border-radius: 25px;
+    }
+
+    .signup-navbar .navbar-collapse ul {
+        align-items: unset;
+        text-align: unset;
+        margin-left: 0;
+    }
+    
+
+    .signup-navbar .navbar-toggler {
+        position: absolute;
+        /* top: px; */
+        right: 40px;
+        border: none !important;
+        padding: 0;
+        width: 30px;
+        height: 22px;
+    }
+
+    .signup-navbar .navbar-toggler:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    .signup-navbar .navbar-toggler-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        color: #333;
+    }
+
+    .signup-navbar .nav-link {
+        color: var(--white);
+        padding: 1rem !important;
+    }
+
+    .signup-navbar .navbar-nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .signup-navbar .navbar-toggler span.navbar-toggler-icon {
+        transition: all 0.15s;
+    }
+
+    .signup-navbar .navbar-toggler span:nth-child(1) {
+        transform: rotate(45deg);
+        transform-origin: 0% 80%;
+    }
+
+    .signup-navbar .navbar-toggler span.navbar-toggler-icon:first-child {
+        margin-top: 0;
+    }
+
+    .signup-navbar .navbar-toggler.collapsed span:nth-child(1) {
+        transform: rotate(0deg);
+    }
+
+    .signup-navbar .navbar-toggler.collapsed span:nth-child(2) {
+        opacity: 1;
+    }
+    
+    .signup-navbar .navbar-toggler span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .signup-navbar .navbar-toggler.collapsed span:nth-child(3) {
+        transform: rotate(0deg);
+    }
+
+    .signup-navbar .navbar-toggler span:nth-child(3) {
+        transform: rotate(-45deg);
+        transform-origin: 15% 100%;
+    }
+
+    .signup-navbar .collapse:not(.show) {
+        display: none;
+    }
+}

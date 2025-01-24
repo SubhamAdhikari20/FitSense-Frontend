@@ -52,3 +52,20 @@
 #home .right-intro img {
     width: 80%;
 }
+
+
+
+
+/* 
+.banner-section-outer {
+    margin: 0;
+    padding: 0;
+    background: url('./../assets/images/bg1.jpg') no-repeat center center/cover;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 1150px; 
+    width: 100%;
+    z-index: -1;
+    opacity: .86;
+} */
