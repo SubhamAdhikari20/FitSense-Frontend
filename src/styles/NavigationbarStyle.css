@@ -6,8 +6,10 @@
     position: sticky;
     width: 100%;
     z-index: 1100;
+    overflow: hidden;
     background-color: transparent;
     transition: all 0.2s ease-in-out;
+    
 }
 
 
@@ -18,6 +20,7 @@
     left: 0;
     top: 0;
     background-color: var(--white);
+    overflow: hidden;
     -webkit-transition: all 15ms ease-in-out;
     -moz-transition: all 15ms ease-in-out;
     -o-transition: all 15ms ease-in-out;

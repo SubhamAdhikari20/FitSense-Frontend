@@ -1,8 +1,8 @@
-.sign-up-section {
+.login-section {
     overflow: hidden;
 }
 
-.sign-up-section .container {
+.login-section .container {
     padding: 0;
     overflow: hidden;
     display: flex;
@@ -10,7 +10,7 @@
     align-items: center;
 }
 
-.sign-up-section .signup-row1 {
+.login-section .login-row1 {
     width: 80%;
     display: flex;
     overflow: hidden;
@@ -18,8 +18,8 @@
     align-items: center;
 }
 
-.sign-up-section .signup-row1 .signup-row1-column1 {
-    padding: 15px;
+.login-section .login-row1 .login-row1-column1 {
+    padding: 50px;
     width: 80%;
     display: flex;
     overflow: hidden;
@@ -29,19 +29,19 @@
 
 
 
-.sign-up-section .form-container {
+.login-section .form-container {
     background-color: white;
     padding: 2rem;
-    width: 440px;
-    height: 690px;
-    /* height: 690px; */
+    width: 450px;
+    height: 500px;
     /* border: 1px solid rgb(153, 155, 156); */
     border-radius: 16px;
     box-sizing: border-box;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
-.sign-up-section .form-container h3 {
+.login-section .form-container h3 {
     font-weight: 600;
     font-size: 1.5rem;
     margin-bottom: 10px;
@@ -49,30 +49,29 @@
     text-align: center;
 }
 
-.sign-up-section .form-container p {
+.login-section .form-container p {
     color: #6c757d;
     font-size: 0.9rem;
     text-align: center;
 }
 
-.sign-up-section .form-container a {
+.login-section .form-container a {
     color: #007bff;
     text-decoration: none;
 }
 
-.sign-up-section .form-container a:hover {
+.login-section .form-container a:hover {
     text-decoration: underline;
 }
 
 
 /* Floating Label Styles */
-.sign-up-section .form-container .form-floating {
+.login-section .form-container .form-floating {
     position: relative;
     margin-bottom: 1rem;
 }
 
-.sign-up-section .form-container .form-floating input,
-.sign-up-section .form-container .form-floating select {
+.login-section .form-container .form-floating input{
     font-size: 1.1rem;
     padding: 0.75rem 1rem;
     border: 1px solid #ccc;
@@ -82,8 +81,7 @@
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.sign-up-section .form-container .form-floating input:focus,
-.sign-up-section .form-container .form-floating select:focus {
+.login-section .form-container .form-floating input:focus{
     border-color: #030303;
     padding: 0rem 1rem;
 }
@@ -107,11 +105,8 @@
 }
 
 
-
-.sign-up-section .form-container .form-floating input:focus + label,
-.sign-up-section .form-container .form-floating input:not(:placeholder-shown) + label,
-.sign-up-section .form-container .form-floating select:focus + label,
-.sign-up-section .form-container .form-floating select:not(:placeholder-shown) + label {
+.login-section .form-container .form-floating input:focus + label,
+.login-section .form-container .form-floating input:not(:placeholder-shown) + label{
     top: -2.5px;
     left: 5px;
     padding: 0 10px;
@@ -121,41 +116,23 @@
 }
 
 
-/* For Password */
-/* .form-container .password-floating-container {
-    display: flex;
-} */
-
-.sign-up-section .form-container .password-floating-container .password-floating-label{
+.login-section .form-container .password-floating-container .password-floating-label{
     width: 100%;
 }
 
-.sign-up-section .form-container .password-floating-container input{
+.login-section .form-container .password-floating-container input{
     padding: 0.75rem 2.6rem 0.75rem 1rem !important;
     background-color: white;
 }    
 
 
-.sign-up-section .form-container .password-floating-container input:focus{
+.login-section .form-container .password-floating-container input:focus{
     padding: 0.75rem 2.6rem 0.75rem 1rem !important;
     background-color: white;
 }
 
 
-.sign-up-section .form-container .password-floating-label input:focus + label,
-.sign-up-section .form-container .password-floating-label input:not(:placeholder-shown) + label {
-    top: -2.5px;
-    left: 5px;
-    padding: 0 10px;
-    font-size: 0.95rem;
-    color: #161617;
-    font-weight: 400;
-}
-
-
-
-
-.sign-up-section .form-container .password-floating-container .toggle-password-btn{
+.login-section  .form-container .password-floating-container .toggle-password-btn{
     position: relative;
     right: -90%;
     top: -45px;
@@ -175,40 +152,10 @@
     cursor: pointer;
 }
 
-.form-container .form-floating .toggle-password-btn:focus {
-    outline: none;
-    box-shadow: none;
-}
 
-.form-container .form-floating .toggle-password-btn:hover {
-    color: #000;
-} 
-
-
-/* Wrapper for country code input */
-.form-container .country-code-wrapper {
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    width: 100%;
-    height: calc(3.5rem + calc(var(--bs-border-width) * 2));
-    min-height: calc(3.5rem + calc(var(--bs-border-width) * 2));
-    
-    
-}
-
-.form-container .country-code-wrapper .country-code-dropdown {
-    font-size: 0.9rem;
-    width: 100%;
-    
-}
 
 /* Button Styles */
-.form-container .btn-sign-up {
+.login-section .form-container .btn-login {
     background-color: #000;
     color: #fff;
     font-weight: bold;
@@ -221,19 +168,48 @@
     transition: background-color 0.2s ease-in-out;
 }
 
-.form-container .btn-sign-up:hover {
+.login-section .form-container .btn-login:hover {
     background-color: #333;
 }
 
+/* 
+.login-section .form-container .btn-login {
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 0.7rem;
+    text-transform: none;
+} */
 
-.form-container a:hover {
+.login-section .form-container a:hover {
     text-decoration: underline;
 }
 
 
+.login-section .form-container .form-floating .toggle-password-btn {
+    position: absolute;
+    right: -90%;
+    top: -45px;
+    /* right: 10px;
+    top: 50%; */
+    transform: translateY(-50%);
+    z-index: 10;
+    padding: 0;
+    background: none;
+    border: none;
+    color: #6c757d;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.login-section .toggle-password-btn:hover {
+    color: #000;
+}
+
 
 /* Social Button */
-.form-container .social-btn {
+.login-section .form-container .social-btn {
     font-size: 0.9rem;
     font-weight: bold;
     border-radius: 8px;
@@ -247,37 +223,37 @@
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-.form-container .social-btn i {
+.login-section .form-container .social-btn i {
     font-size: 0.9rem;
     color: rgb(23, 22, 22);
     margin-right: 0.5rem;
 }
 
-.form-container .social-btn i:hover {
+.login-section .form-container .social-btn i:hover {
     background-color: #f9f9f9;
 }
 
 
 
 /* Checkbox */
-.form-container .form-check-label {
+.login-section .form-container .form-check-label {
     font-size: 0.85rem;
     color: #6c757d;
 }
 
-.form-container .form-check-label a {
+.login-section .form-container .form-check-label a {
     color: #007bff;
     text-decoration: none;
 }
 
-.form-container .form-check-label a:hover {
+.login-section .form-container .form-check-label a:hover {
     text-decoration: underline;
 }
 
 
 
 @media screen and (max-width: 900px) {
-    .sign-up-section .form-container {
+    .login-section .form-container {
         background-color: white;
         padding: 2rem;
         width: 440px;
@@ -287,7 +263,7 @@
         box-shadow: none;
     }
 
-    .sign-up-section .signup-row1 {
+    .login-section .login-row1 {
         width: 100%;
     }
 
