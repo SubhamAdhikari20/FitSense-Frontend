@@ -48,7 +48,7 @@ const Navigationbar = ({ navbarStyle }) => {
                             <Nav.Link as={Link} to="/blog">
                                 Blog
                             </Nav.Link>
-                            <Nav.Link as={Link} to="/about">
+                            <Nav.Link href = "#about-section">
                                 About
                             </Nav.Link>
                             <Nav.Link as={Link} to="/contact">

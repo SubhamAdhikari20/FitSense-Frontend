@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const Api = axios.create({
-  baseURL: `http://localhost:${process.env.SERVER_PORT}`,
+  baseURL: `${process.env.SERVER_URL}`,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",

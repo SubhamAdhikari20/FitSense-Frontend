@@ -1,0 +1,114 @@
+/* General Section Styling */
+.home-section2 {
+    padding: 150px 0px;
+    background: #fff;
+    text-align: center;
+}
+
+.home-section2 .home-section2-container .row1-column1 h1{
+    font-family: var(--dela-gothic-one-font);
+    font-weight: 500;
+    font-size: 2.2rem;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+
+/* Feature Carousel */
+.feature-carousel {
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.feature-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
+}
+
+/* Feature Card */
+.feature-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    width: 250px;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 15px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Feature Icons */
+.flex-muscle {
+    background-image: url('/assets/icons/flex-muscle.png');
+}
+
+.powerful-vitamins {
+    background-image: url('/assets/icons/powerful-vitamins.png');
+}
+
+.abdominal-sessions {
+    background-image: url('/assets/icons/abdominal-sessions.png');
+}
+
+.weight-lifting {
+    background-image: url('/assets/icons/weight-lifting.png');
+}
+
+/* Read More Links */
+.feature-card a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #d9534f;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.feature-card a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .feature-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .feature-row {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .feature-card {
+        width: 100%;
+    }
+}
