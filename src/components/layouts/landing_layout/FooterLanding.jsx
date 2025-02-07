@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Figure, Button } from "react-bootstrap";
-import Logo from "./../../assets/images/fitsense_logo2.png";
-import "./../../styles/FooterStyle.css";
+import Logo from "./../../../assets/images/fitsense_logo2.png";
 import { Link } from "react-router-dom";
+import "./../../../styles/landing_styles/FooterLandingStyle.css";
 
 const Footer = () => {
     const [isSticky, setIsSticky] = useState(false);

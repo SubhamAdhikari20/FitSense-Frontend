@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Col, Container, Row, Form, Button, FloatingLabel } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./../../styles/SignUpSectionStyle.css";
-import Dropdown1 from './../../components/buttons/Dropdown1.jsx';
+import "./../../styles/authentication_styles/SignUpSectionStyle.css";
+import Dropdown1 from "./../../components/buttons/Dropdown1.jsx";
 
 const SignUpSection = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -11,7 +11,6 @@ const SignUpSection = () => {
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
-
 
     // Form data state
     // const[fullName, setFirstName] = useState("")
@@ -25,9 +24,8 @@ const SignUpSection = () => {
         email: "",
         mobileNumber: "",
         password: "",
-        agreeToTerms: false
+        agreeToTerms: false,
     });
-
 
     const countryOptions = [
         // { label: "IN +91", value: "+91" },
@@ -55,20 +53,38 @@ const SignUpSection = () => {
                             </h3>
                             <Form>
                                 {/* Full Name */}
-                                <FloatingLabel controlId="fullName" label="Full name" className="mb-3">
-                                    <Form.Control type="text" placeholder="Full name" />
+                                <FloatingLabel
+                                    controlId="fullName"
+                                    label="Full name"
+                                    className="mb-3"
+                                >
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Full name"
+                                    />
                                 </FloatingLabel>
 
                                 {/* Email Address */}
-                                <FloatingLabel controlId="email" label="Email address" className="mb-3">
-                                    <Form.Control type="email" placeholder="Email address" />
+                                <FloatingLabel
+                                    controlId="email"
+                                    label="Email address"
+                                    className="mb-3"
+                                >
+                                    <Form.Control
+                                        type="email"
+                                        placeholder="Email address"
+                                    />
                                 </FloatingLabel>
 
                                 {/* Mobile Number */}
                                 <Row>
                                     <Col md={4}>
                                         <div className="country-code-wrapper  mb-3">
-                                            <Dropdown1 options={countryOptions} onSelect={handleCountrySelect} className="country-code-dropdown">
+                                            <Dropdown1
+                                                options={countryOptions}
+                                                onSelect={handleCountrySelect}
+                                                className="country-code-dropdown"
+                                            >
                                                 Select
                                             </Dropdown1>
                                         </div>
@@ -88,8 +104,15 @@ const SignUpSection = () => {
                                     </Col>
 
                                     <Col md={8}>
-                                        <FloatingLabel controlId="mobileNumber" label="Mobile Number" className="mb-3">
-                                            <Form.Control type="text" placeholder="Mobile number" />
+                                        <FloatingLabel
+                                            controlId="mobileNumber"
+                                            label="Mobile Number"
+                                            className="mb-3"
+                                        >
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="Mobile number"
+                                            />
                                         </FloatingLabel>
                                     </Col>
                                 </Row>
@@ -97,22 +120,37 @@ const SignUpSection = () => {
                                 {/* Password */}
                                 <Row>
                                     <Col className="password-floating-container">
-                                        <FloatingLabel controlId="password" label="Password" className="mb-3 password-floating-label">
-                                            <Form.Control type={showPassword ? "text" : "password"} placeholder="Password" autoComplete="new-password"/>
+                                        <FloatingLabel
+                                            controlId="password"
+                                            label="Password"
+                                            className="mb-3 password-floating-label"
+                                        >
+                                            <Form.Control
+                                                type={
+                                                    showPassword
+                                                        ? "text"
+                                                        : "password"
+                                                }
+                                                placeholder="Password"
+                                                autoComplete="new-password"
+                                            />
                                         </FloatingLabel>
-                                        
+
                                         <Button
                                             variant="link"
                                             className="toggle-password-btn"
                                             onClick={togglePasswordVisibility}
                                         >
-                                            <i className={showPassword ? "bi bi-eye-slash" : "bi bi-eye"}></i>
+                                            <i
+                                                className={
+                                                    showPassword
+                                                        ? "bi bi-eye-slash"
+                                                        : "bi bi-eye"
+                                                }
+                                            ></i>
                                         </Button>
-
                                     </Col>
-
                                 </Row>
-
 
                                 {/* Terms and Conditions */}
                                 <Form.Group className="mb-4" controlId="terms">
@@ -121,9 +159,14 @@ const SignUpSection = () => {
                                         label={
                                             <>
                                                 I have read and agree to FITTR's{" "}
-                                                <Link href="#!">Terms of Use</Link>{" "}
+                                                <Link href="#!">
+                                                    Terms of Use
+                                                </Link>{" "}
                                                 and{" "}
-                                                <Link href="#!">Privacy Policy</Link>.
+                                                <Link href="#!">
+                                                    Privacy Policy
+                                                </Link>
+                                                .
                                             </>
                                         }
                                     />
@@ -131,7 +174,11 @@ const SignUpSection = () => {
 
                                 {/* Submit Button */}
                                 {/* <div className="d-grid"> */}
-                                <Button variant="dark" type="submit" className="btn-sign-up">
+                                <Button
+                                    variant="dark"
+                                    type="submit"
+                                    className="btn-sign-up"
+                                >
                                     Sign Up
                                 </Button>
                                 {/* </div> */}
@@ -141,10 +188,12 @@ const SignUpSection = () => {
                             <div className="text-center mt-3">
                                 <p className="text-muted mb-2">Sign Up With</p>
                                 <div>
-                                    <Button variant="outline-primary" className="social-btn">
+                                    <Button
+                                        variant="outline-primary"
+                                        className="social-btn"
+                                    >
                                         <i class="bi bi-google"></i>
                                     </Button>
-
                                 </div>
                             </div>
 

@@ -1,14 +1,14 @@
 import React from "react";
-import Layout from "../../components/layouts/Layout";
-import SignUpSection from "./SignUpSection";
-import Navigationbar from "./../../components/layouts/Navigationbar";
-import "./../../styles/SignUpStyle.css";
+import "./../../styles/landing_styles/LayoutLandingStyle.css";
+import "./../../styles/authentication_styles/SignUpStyle.css";
+import SignUpSection from "./SignUpSection.jsx";
+import Layout from "./../../components/layouts/landing_layout/LayoutLanding.jsx";
 
 const SignUp = () => {
     return (
         <>
             {/* <Navigationbar />
-            <SignUpSection /> */} 
+            <SignUpSection /> */}
             <Layout showFooter={false} navbarStyle="signup-navbar">
                 <SignUpSection />
             </Layout>

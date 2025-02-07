@@ -1,12 +1,11 @@
 import React from "react";
-import Footer from './Footer.jsx';
-import Navigationbar from "./Navigationbar";
-import './../../styles/LayoutStyle.css';
+import Navbar from "./NavbarLanding.jsx";
+import Footer from "./FooterLanding.jsx";
 
 const Layout = ({ children, showFooter = true, navbarStyle = "" }) => {
     return (
         <>
-            <Navigationbar navbarStyle={navbarStyle} />
+            <Navbar navbarStyle={navbarStyle} />
             <main>{children}</main>
             {showFooter && <Footer />}
         </>

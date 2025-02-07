@@ -1,11 +1,27 @@
 /* AboutUs.css */
-.about-us-container {
-    padding: 2rem; /* Add padding to the container */
+.about-section{
+    margin: 0;
+    padding: 200px 0;
 }
 
-/* .text-content { */
-/* Style the text content */
-/* } */
+
+.about-section::before{
+    content: "";
+    background: url('./../assets/images/about_bg.jpg')  no-repeat center center/cover;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    height: 1150px;
+    width: 100%;
+    z-index: -1;
+    opacity: .90;
+}
+
+
+.about-section .about-container {
+    padding: 2rem; 
+}
+
 
 .stats {
     display: flex;

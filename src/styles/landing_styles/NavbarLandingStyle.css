@@ -37,6 +37,11 @@
 }
 
 
+/* .header-navbar .navbar-container{
+    margin: 0 0 0 250px;
+}
+ */
+
 .header-navbar.sticky .nav-link {
     color: #333; /* Adjust text color */
 }
@@ -107,7 +112,7 @@
 .header-navbar .sign-up-btn {
     position: relative;
     top: -3px;
-    margin: 0px 15px;
+    margin: 0px 5px;
     --bs-btn-color: #8fff00;
     --bs-btn-border-color: #8fff00;
     --bs-btn-hover-color: #fff;

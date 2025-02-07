@@ -1,11 +1,11 @@
 import React from "react";
 import { Col, Container, Row, Carousel, Figure, Button } from "react-bootstrap";
-import Bg from "./../../assets/images/bg1.jpg";
 import Typed from "typed.js";
 import { useEffect, useState } from "react";
-import "./../../styles/HomeSection1Style.css";
+import "./../../styles/landing_styles/HomeSection1Style.css";
 import Video_img from "./../../assets/images/video_play_img.png";
 import { Link } from "react-router-dom";
+import Bg from './../../assets/images/bg1.jpg';
 
 const HomeSection1 = () => {
     // useEffect(() => {
@@ -93,8 +93,11 @@ const HomeSection1 = () => {
 
                     <Col className="p-0 column2">
                         <div className="banner-video position-relative">
-                            <Link to="https://video-previews.elements.envatousercontent.com/h264-video-previews/9b19c081-53dc-4345-a05e-0c9a4a52f3e6/26111213.mp4" target="_blank" 
-                            className="video-link">
+                            <Link
+                                to="https://video-previews.elements.envatousercontent.com/h264-video-previews/9b19c081-53dc-4345-a05e-0c9a4a52f3e6/26111213.mp4"
+                                target="_blank"
+                                className="video-link"
+                            >
                                 <Figure className="video-img mb-0">
                                     <Figure.Image
                                         alt="171x180"
