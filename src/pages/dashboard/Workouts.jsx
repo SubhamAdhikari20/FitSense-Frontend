@@ -1,17 +1,16 @@
 import React from "react";
-import "./../../styles/dashboard_styles/DashboardStyle.css";
 import LayoutDashboard from "../../components/layouts/dashboard_layout/LayoutDashboard";
-import DashboardSection from "./DashboardSection";
+import WorkoutsSection from "./WorkoutsSection";
 
-
-const Dashboard = () => {
+const Workouts = () => {
     return (
         <>
             <LayoutDashboard>
-                <DashboardSection/>
+                <WorkoutsSection />
             </LayoutDashboard>
         </>
     );
+
 };
 
-export default Dashboard;
+export default Workouts;

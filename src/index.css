@@ -35,6 +35,18 @@
     --brown: #6f5e4d;
     --bg-coffee: #642f21;
     --e-global-color-primary: #252323;
+    --primary: #007AFF;
+    --primary-light: #6ba9ec;
+    --primary-light-bg: #007AFF20;;
+    --secondary: #007AFF;
+    --text-primary: #404040;
+    --text-secondary: #4d4c4c;
+    --card-box-shadow: #007AFF15;
+    --card-border: #40404020;
+    --card-background: #f7f7f7;
+    --button-box-shadow: #007AFF40;
+    --button-border: #40404020;
+    --error-color: red;
 }
 
 body,
