@@ -37,10 +37,10 @@
 }
 
 
-/* .header-navbar .navbar-container{
-    margin: 0 0 0 250px;
+.header-navbar .navbar-container{
+    flex-direction: row;
 }
- */
+
 
 .header-navbar.sticky .nav-link {
     color: #333; /* Adjust text color */

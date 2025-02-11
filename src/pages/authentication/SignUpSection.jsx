@@ -7,9 +7,14 @@ import Dropdown1 from "./../../components/buttons/Dropdown1.jsx";
 const SignUpSection = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [countryCode, setCountryCode] = useState("+91"); // Default country code
-
+    
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
+    };
+    
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const toggleConfirmPasswordVisibility = () => {
+        setShowConfirmPassword(!showConfirmPassword);
     };
 
     // Form data state
@@ -118,7 +123,7 @@ const SignUpSection = () => {
                                 </Row>
 
                                 {/* Password */}
-                                <Row>
+                                <Row className="mb-3">
                                     <Col className="password-floating-container">
                                         <FloatingLabel
                                             controlId="password"
@@ -144,6 +149,41 @@ const SignUpSection = () => {
                                             <i
                                                 className={
                                                     showPassword
+                                                        ? "bi bi-eye-slash"
+                                                        : "bi bi-eye"
+                                                }
+                                            ></i>
+                                        </Button>
+                                    </Col>
+                                </Row>
+
+                                {/* Confrim Password */}
+                                <Row className="mb-4">
+                                    <Col className="confirm-password-floating-container">
+                                        <FloatingLabel
+                                            controlId="confirm-password"
+                                            label="Confirm Password"
+                                            className="mb-3 password-floating-label"
+                                        >
+                                            <Form.Control
+                                                type={
+                                                    showConfirmPassword
+                                                        ? "text"
+                                                        : "password"
+                                                }
+                                                placeholder="Confirm Password"
+                                                autoComplete="confirm-password"
+                                            />
+                                        </FloatingLabel>
+
+                                        <Button
+                                            variant="link"
+                                            className="toggle-password-btn"
+                                            onClick={toggleConfirmPasswordVisibility}
+                                        >
+                                            <i
+                                                className={
+                                                    showConfirmPassword
                                                         ? "bi bi-eye-slash"
                                                         : "bi bi-eye"
                                                 }

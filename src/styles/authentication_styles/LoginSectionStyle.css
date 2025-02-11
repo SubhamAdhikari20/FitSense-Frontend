@@ -115,6 +115,10 @@
     font-weight: 400;
 }
 
+.login-section .form-container .password-floating-container{
+    height: 60px;
+}
+
 
 .login-section .form-container .password-floating-container .password-floating-label{
     width: 100%;
@@ -152,7 +156,14 @@
     cursor: pointer;
 }
 
+.login-section .form-container .forgot-password{
+    text-align: end;
+}
 
+.login-section .form-container .forgot-password a{
+    font-size: 0.9rem;
+    text-align: end;
+}
 
 /* Button Styles */
 .login-section .form-container .btn-login {
