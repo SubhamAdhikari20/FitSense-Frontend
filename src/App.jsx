@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider, styled } from "styled-components";
 import { lightTheme } from './utils/theme.js';
 import { useSelector } from "react-redux";
@@ -23,6 +23,7 @@ function App() {
                     <>
                         <NavbarDashboard currentUser={currentUser} />
                         <Routes>
+                            <Route path="/" element={<Navigate to="/dashboard" />} />
                             <Route path="/dashboard" element={<Dashboard />} />
                             <Route path="/workouts" element={<Workouts />} />
                         </Routes>

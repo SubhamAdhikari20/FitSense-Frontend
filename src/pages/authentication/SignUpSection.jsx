@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./../../styles/authentication_styles/SignUpSectionStyle.css";
 import Dropdown1 from "./../../components/buttons/Dropdown1.jsx";
 import { useDispatch } from "react-redux";
-import { loginSuccess } from './../../redux/reducers/userSlice.js';
+import { registerSuccess } from './../../redux/reducers/userSlice.js';
 import { registerUser } from './../../apis/Api.js';
 
 const SignUpSection = () => {
@@ -36,53 +36,53 @@ const SignUpSection = () => {
     const validateInputs = () => {
         // Frontend validation
         if (!fullName || !email || !phoneNumber || !password || !confirmPassword) {
-            alert("Please fill in all fields!!!");
+            alert("Please, insert all details!!!");
             setLoading(false);
             setButtonDisabled(false);
             return false;
         }
 
         if (password !== confirmPassword) {
-            alert("Passwords and Confirm Password don't match!!");
+            alert("Passwords and Confirm Password don't match!");
             setLoading(false);
             setButtonDisabled(false);
             return false;
         }
 
         if (!agreeToTerms) {
-            alert("You must agree to the terms");
+            alert("You must agree to the terms!");
             setLoading(false);
             setButtonDisabled(false);
             return false;
         }
 
-        // if (!/^\S+@\S+\.\S+$/.test(email)) {
-        //     alert("Please enter a valid email address");
-        //     setLoading(false);
-        //     setButtonDisabled(false);
-        //     return false;
-        // }
+        if (!/^\S+@\S+\.\S+$/.test(email)) {
+            alert("Please enter a valid email address!");
+            setLoading(false);
+            setButtonDisabled(false);
+            return false;
+        }
 
-        // if (!/^\d+$/.test(phoneNumber)) {
-        //     alert("Mobile number must contain only digits");
-        //     setLoading(false);
-        //     setButtonDisabled(false);
-        //     return false;
-        // }
+        if (!/^\d+$/.test(phoneNumber)) {
+            alert("Mobile number must contain only digits!");
+            setLoading(false);
+            setButtonDisabled(false);
+            return false;
+        }
 
-        // if (countryCode === "+977" && phoneNumber.length !== 10) {
-        //     alert("Nepali numbers must be 10 digits");
-        //     setLoading(false);
-        //     setButtonDisabled(false);
-        //     return false;
-        // }
+        if (phoneNumber.length !== 10) {
+            alert("Nepali numbers must be 10 digits!");
+            setLoading(false);
+            setButtonDisabled(false);
+            return false;
+        }
 
-        // if (password.length < 8) {
-        //     alert("Password must be at least 8 characters");
-        //     setLoading(false);
-        //     setButtonDisabled(false);
-        //     return false;
-        // }
+        if (password.length < 8) {
+            alert("Password must be at least 8 characters!");
+            setLoading(false);
+            setButtonDisabled(false);
+            return false;
+        }
 
         // if (!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(password)) {
         //     alert("Password must contain 8+ characters with uppercase, lowercase, and number");
@@ -94,11 +94,12 @@ const SignUpSection = () => {
         return true;
     };
 
-    const handelSignUp = async (e) => {
+    const handleSignUp = async (e) => {
         e.preventDefault(); // Prevent form from refreshing the page
         setLoading(true);
         setButtonDisabled(true);
 
+        
         if (validateInputs()) {
             await registerUser({
                 fullName,
@@ -107,11 +108,12 @@ const SignUpSection = () => {
                 password,
             })
                 .then((res) => {
-                    dispatch(loginSuccess(res.data));
-                    alert("Account created successfully!");
-                    navigate("/dashboard");
+                    // dispatch(registerSuccess(res.data));
+                    alert(res.data.message || "Account created successfully!");
+                    navigate("/login");
                 })
                 .catch((error) => {
+                    console.error("Registration error response:", error.response);
                     alert(error?.response?.data?.error || "Registration failed. Please try again.");
                 })
                 .finally(() => {
@@ -119,25 +121,25 @@ const SignUpSection = () => {
                     setButtonDisabled(false);
                 });
         }
-
+        
 
         /*
         if (validateInputs()) {
-            const response = await registerUser({
-                fullName: fullName,
-                email: email,
-                phoneNumber: phoneNumber,
-                password: password,
-            });
-
             try {
+                const response = await registerUser({
+                    fullName,
+                    email,
+                    phoneNumber,
+                    password,
+                });
                 dispatch(loginSuccess(response.data));
                 alert("Account created successfully!");
-                navigate("/dashboard");
+                navigate("/login");
             }
 
             catch (error) {
-                alert(error.res.data.message);
+                console.log("Registration error response:", error.response);
+                alert(error?.response?.data?.error || "Registration failed. Please try again.");
             }
 
             finally {
@@ -146,6 +148,8 @@ const SignUpSection = () => {
             }
         }
         */
+        
+
 
     };
 
@@ -338,7 +342,7 @@ const SignUpSection = () => {
                                     type="submit"
                                     className="btn-sign-up"
                                     disabled={buttonDisabled}
-                                    onClick={handelSignUp}
+                                    onClick={handleSignUp}
                                 >
                                     {loading ? "Signing Up..." : "Sign Up"}
                                 </Button>

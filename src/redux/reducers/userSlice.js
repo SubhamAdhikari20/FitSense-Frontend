@@ -8,6 +8,10 @@ export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
+        registerSuccess: (state, action) => {
+            state.currentUser = action.payload.user;
+            localStorage.setItem("fitsense-app-token", action.payload.token);
+        },
         loginSuccess: (state, action) => {
             state.currentUser = action.payload.user;
             localStorage.setItem("fitsense-app-token", action.payload.token);
@@ -19,6 +23,6 @@ export const userSlice = createSlice({
     },
 });
 
-export const { loginSuccess, logout } = userSlice.actions;
+export const { registerSuccess, loginSuccess, logout } = userSlice.actions;
 
 export default userSlice.reducer;

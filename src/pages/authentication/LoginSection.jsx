@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Col, Container, Row, Form, Button, FloatingLabel } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./../../styles/authentication_styles/LoginSectionStyle.css";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from './../../redux/reducers/userSlice.js';
@@ -17,6 +17,7 @@ const LoginSection = () => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const [buttonDisabled, setButtonDisabled] = useState(false);
+    const navigate = useNavigate();
 
     // Form data state
     const [email, setEmail] = useState("");
@@ -47,14 +48,15 @@ const LoginSection = () => {
         setButtonDisabled(true);
 
         if (validateInputs()) {
-            loginUser({ email, password})
+            await loginUser({ email, password})
                 .then((res) => {
                     dispatch(loginSuccess(res.data));
-                    alert("Logged in successfully!");
-                    // Redirect to dashboard page
+                    alert(res.data.message || "Logged in successfully!");
+                    navigate("/dashboard");
+                    
                 })
                 .catch((error) => {
-                    alert(error.response.data.message);
+                    alert(error?.response?.data?.error || "Registration failed. Please try again.");
                 })
                 .finally(() => {
                     setLoading(false);
