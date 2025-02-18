@@ -7,12 +7,12 @@ import './../../../styles/dashboard_styles/NavbarDashboardStyle.css';
 import styled from "styled-components";
 import { MenuRounded } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
-// import { logout } from "../redux/reducers/userSlice";
+import { logout } from './../../../redux/reducers/userSlice.js';
 
-const NavbarDashboard = ({currentUser }) => {
+const NavbarDashboard = ({ currentUser }) => {
     const [isSticky, setIsSticky] = useState(false);
-    // const dispatch = useDispatch();
     const [isOpen, setisOpen] = useState(false);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -32,7 +32,7 @@ const NavbarDashboard = ({currentUser }) => {
 
 
     return (
-        <header className={`${isSticky? "dashboard-header-navbar sticky" : "dashboard-header-navbar"}`}>
+        <header className={`${isSticky ? "dashboard-header-navbar sticky" : "dashboard-header-navbar"}`}>
             <Navbar expand="lg">
                 <Container className="navbar-container">
 

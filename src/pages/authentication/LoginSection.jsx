@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { Col, Container, Row, Form, Button, FloatingLabel } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./../../styles/authentication_styles/LoginSectionStyle.css";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from './../../redux/reducers/userSlice.js';
+import { loginUser } from './../../apis/Api.js';
+
 
 const LoginSection = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -9,6 +13,57 @@ const LoginSection = () => {
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
+
+    const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
+    const [buttonDisabled, setButtonDisabled] = useState(false);
+
+    // Form data state
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const validateInputs = () => {
+        // Frontend validation
+        if (!email || !password) {
+            alert("Please fill in all fields!!!");
+            setLoading(false);
+            setButtonDisabled(false);
+            return false;
+        }
+
+        if (!/^\S+@\S+\.\S+$/.test(email)) {
+            alert("Please enter a valid email address");
+            setLoading(false);
+            setButtonDisabled(false);
+            return false;
+        }
+
+        return true;
+    };
+
+    const handelLogin = async (e) => {
+        e.preventDefault(); // Prevent form from refreshing the page
+        setLoading(true);
+        setButtonDisabled(true);
+
+        if (validateInputs()) {
+            loginUser({ email, password})
+                .then((res) => {
+                    dispatch(loginSuccess(res.data));
+                    alert("Logged in successfully!");
+                    // Redirect to dashboard page
+                })
+                .catch((error) => {
+                    alert(error.response.data.message);
+                })
+                .finally(() => {
+                    setLoading(false);
+                    setButtonDisabled(false);
+                });
+        }
+
+    };
+
 
     return (
         <section className="login-section">
@@ -29,6 +84,8 @@ const LoginSection = () => {
                                     <Form.Control
                                         type="email"
                                         placeholder="Email address"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
                                     />
                                 </FloatingLabel>
 
@@ -48,6 +105,8 @@ const LoginSection = () => {
                                                 }
                                                 placeholder="Password"
                                                 autoComplete="new-password"
+                                                value={password}
+                                                onChange={(e) => setPassword(e.target.value)}
                                             />
                                         </FloatingLabel>
 
@@ -68,23 +127,23 @@ const LoginSection = () => {
                                 </Row>
 
                                 <p className="forgot-password">
-                                    <Link to="/forgot-password">Forgot Password?</Link>
+                                    <Link to="/forgot_password">Forgot Password?</Link>
                                 </p>
 
-                                {/* Submit Button */}
-                                {/* <div className="d-grid"> */}
+                                {/* Login Button */}
                                 <Button
                                     variant="dark"
                                     type="submit"
                                     className="btn-login"
+                                    disabled={buttonDisabled}
+                                    onClick={handelLogin}
                                 >
-                                    Login
+                                    {loading ? "Logging..." : "Login"}
                                 </Button>
-                                {/* </div> */}
                             </Form>
 
                             {/* Social Signup */}
-                            <div className="text-center mt-4">
+                            {/* <div className="text-center mt-4">
                                 <p className="text-muted">Login With</p>
                                 <div>
                                     <Button
@@ -94,7 +153,7 @@ const LoginSection = () => {
                                         <i class="bi bi-google"></i>
                                     </Button>
                                 </div>
-                            </div>
+                            </div> */}
 
                             <p className="text-center mt-3">
                                 Don' have an account?{" "}
