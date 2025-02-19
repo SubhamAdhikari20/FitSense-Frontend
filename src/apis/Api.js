@@ -12,6 +12,7 @@ const Api = axios.create({
 
 export const registerUser = async (data) => Api.post("/user/register_user", data);
 export const loginUser = async (data) => Api.post("/user/login_user", data);
+export const resetPasswordUser = async (data) => Api.post("/user/forgot_password", data);
 
 export const getDashboardDetails = async (token) =>
     Api.get("/user/dashboard", {

@@ -1,20 +1,84 @@
 import React, { useState } from 'react';
 import { Col, Container, Row, Form, Button, FloatingLabel } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import './../../styles/authentication_styles/ForgotPasswordSectionStyle.css';
+import { resetPasswordUser } from '../../apis/Api.js';
 
 const ForgotPasswordSection = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
 
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
     const toggleConfirmPasswordVisibility = () => {
         setShowConfirmPassword(!showConfirmPassword);
     };
+
+    const [loading, setLoading] = useState(false);
+    const [buttonDisabled, setButtonDisabled] = useState(false);
+    const navigate = useNavigate();
+
+    // Forgot Form data state
+    const [email, setEmail] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmNewPassword, setConfirmNewPassword] = useState("");
+
+    const validateInputs = () => {
+        // Frontend validation
+        if (!email || !newPassword || !confirmNewPassword) {
+            alert("Please, fill all fields!!!");
+            setLoading(false);
+            setButtonDisabled(false);
+            return false;
+        }
+
+        if (newPassword !== confirmNewPassword) {
+            alert("New Password and Confirm Password don't match!");
+            setLoading(false);
+            setButtonDisabled(false);
+            return false;
+        }
+        
+        if (!/^\S+@\S+\.\S+$/.test(email)) {
+            alert("Please enter a valid email address");
+            setLoading(false);
+            setButtonDisabled(false);
+            return false;
+        }
+
+        if (newPassword.length < 8) {
+            alert("Password must be at least 8 characters!");
+            setLoading(false);
+            setButtonDisabled(false);
+            return false;
+        }
+
+        return true;
+    };
+
+    const handleResetPassword = async (e) => {
+        e.preventDefault(); 
+        setLoading(true);
+        setButtonDisabled(true);
+
+        if (validateInputs()) {
+            await resetPasswordUser({ email, newPassword })
+                .then((res) => {
+                    alert(res.data.message || "Reset successful");
+                    navigate("/login");
+                })
+                .catch((error) => {
+                    alert(error?.response?.data?.error || "Reset Paswword failed. Please, try again.");
+                })
+                .finally(() => {
+                    setLoading(false);
+                    setButtonDisabled(false);
+                });
+        }
+    }
+
 
     return (
         <section className="forgot-password-section">
@@ -36,10 +100,12 @@ const ForgotPasswordSection = () => {
                                     <Form.Control
                                         type="email"
                                         placeholder="Email address"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
                                     />
                                 </FloatingLabel>
 
-            
+
 
                                 {/* Password */}
                                 <Row className="mb-3">
@@ -57,6 +123,8 @@ const ForgotPasswordSection = () => {
                                                 }
                                                 placeholder="New Password"
                                                 autoComplete="new-password"
+                                                value={newPassword}
+                                                onChange={(e) => setNewPassword(e.target.value)}
                                             />
                                         </FloatingLabel>
 
@@ -92,6 +160,8 @@ const ForgotPasswordSection = () => {
                                                 }
                                                 placeholder="Confirm Password"
                                                 autoComplete="confirm-password"
+                                                value={confirmNewPassword}
+                                                onChange={(e) => setConfirmNewPassword(e.target.value)}
                                             />
                                         </FloatingLabel>
 
@@ -116,8 +186,10 @@ const ForgotPasswordSection = () => {
                                     variant="dark"
                                     type="submit"
                                     className="btn-reset"
+                                    disabled={buttonDisabled}
+                                    onClick={handleResetPassword}
                                 >
-                                    Reset
+                                    {loading ? "Reseting..." : "Reset"}
                                 </Button>
                                 {/* </div> */}
                             </Form>

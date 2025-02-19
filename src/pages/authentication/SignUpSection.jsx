@@ -3,9 +3,8 @@ import { Col, Container, Row, Form, Button, FloatingLabel } from "react-bootstra
 import { Link, useNavigate } from "react-router-dom";
 import "./../../styles/authentication_styles/SignUpSectionStyle.css";
 import Dropdown1 from "./../../components/buttons/Dropdown1.jsx";
-import { useDispatch } from "react-redux";
-import { registerSuccess } from './../../redux/reducers/userSlice.js';
 import { registerUser } from './../../apis/Api.js';
+
 
 const SignUpSection = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +19,6 @@ const SignUpSection = () => {
         setShowConfirmPassword(!showConfirmPassword);
     };
 
-    const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const navigate = useNavigate();
@@ -95,7 +93,7 @@ const SignUpSection = () => {
     };
 
     const handleSignUp = async (e) => {
-        e.preventDefault(); // Prevent form from refreshing the page
+        e.preventDefault();  // Prevent form from refreshing the page
         setLoading(true);
         setButtonDisabled(true);
 
@@ -108,7 +106,6 @@ const SignUpSection = () => {
                 password,
             })
                 .then((res) => {
-                    // dispatch(registerSuccess(res.data));
                     alert(res.data.message || "Account created successfully!");
                     navigate("/login");
                 })

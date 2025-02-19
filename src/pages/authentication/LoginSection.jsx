@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Col, Container, Row, Form, Button, FloatingLabel } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import "./../../styles/authentication_styles/LoginSectionStyle.css";
+import { loginUser } from './../../apis/Api.js';
 import { useDispatch } from "react-redux";
 import { loginSuccess } from './../../redux/reducers/userSlice.js';
-import { loginUser } from './../../apis/Api.js';
 
 
 const LoginSection = () => {
@@ -43,7 +43,7 @@ const LoginSection = () => {
     };
 
     const handelLogin = async (e) => {
-        e.preventDefault(); // Prevent form from refreshing the page
+        e.preventDefault(); 
         setLoading(true);
         setButtonDisabled(true);
 
@@ -56,7 +56,7 @@ const LoginSection = () => {
                     
                 })
                 .catch((error) => {
-                    alert(error?.response?.data?.error || "Registration failed. Please try again.");
+                    alert(error?.response?.data?.error || "Login failed. Please, try again.");
                 })
                 .finally(() => {
                     setLoading(false);
