@@ -1,4 +1,4 @@
-.dashboard-header-navbar {
+/* .dashboard-header-navbar {
     position: sticky;
     width: 100%;
     z-index: 1100;
@@ -32,7 +32,7 @@
 }
 
 .dashboard-header-navbar.sticky .nav-link {
-    color: #333; /* Adjust text color */
+    color: #333; 
 }
 
 @keyframes stickyTransition {
@@ -83,10 +83,6 @@
     font-weight: 500;
     font-family: var(--oswald-font);
     text-transform: uppercase;
-    /* padding: 0 0.5rem !important;
-    margin: 0 2rem !important; */
-    /* -webkit-transition: all 15ms ease-in-out;
-    -ms-transition: all 15ms ease-in-out; */
 }
 
 .dashboard-header-navbar .nav-link:hover {
@@ -97,7 +93,7 @@
     color: var(--white);
 }
 
-/* Mobile Menu */
+
 .dashboard-header-navbar .mobile-icon {
     display: none;
     cursor: pointer;
@@ -129,8 +125,6 @@
 }
 
 .dashboard-header-navbar .user-container {
-    /* width: 100%;
-    height: 100%; */
     display: flex;
     justify-content: flex-end;
     gap: 16px;
@@ -163,3 +157,137 @@
         
     }
 }
+
+ */
+
+
+ .sidebar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 240px;
+    height: 100vh;
+    /* Light mint/green from your screenshot, adjust as needed */
+    background-color: #E9F4F5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    z-index: 1000;
+  }
+  
+  /* LOGO */
+  .sidebar-brand {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .sidebar-logo {
+    max-width: 80px;
+    height: auto;
+  }
+  
+  /* NAVIGATION */
+  .sidebar-nav {
+    width: 100%;
+    flex-grow: 1; /* push bottom section to the bottom */
+  }
+  .nav-item-custom {
+    color: #333;
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+  }
+  .nav-item-custom:hover {
+    background-color: #dce7e7;
+    color: #000;
+    text-decoration: none;
+  }
+  
+  /* BOTTOM SECTION (Desktop) */
+  .sidebar-bottom {
+    width: 100%;
+    padding: 1rem;
+    border-top: 1px solid #ccc;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .user-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  /* === MOBILE MENU === */
+  .mobile-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+  
+  .mobile-menu {
+    position: absolute;
+    top: 0;
+    left: -240px;
+    width: 240px;
+    height: 100%;
+    background-color: #E9F4F5;
+    transition: left 0.3s ease;
+    padding: 4rem 1rem;
+    z-index: 2000;
+  }
+  .mobile-menu.open {
+    left: 0;
+  }
+  
+  /* LOGOUT LINK STYLING */
+  .logout-link {
+    cursor: pointer;
+    color: #d9534f;
+  }
+  
+  /* === USER MENU & POPUP === */
+  .user-menu {
+    position: relative;
+    display: inline-block; /* or flex, as needed */
+  }
+  
+  /* The popup that appears when the avatar is clicked */
+  .profile-popup {
+    position: absolute;
+    /* Position near the avatar – tweak these for perfect alignment */
+    top: 0;
+    left: 80px; /* so it appears to the right of the avatar */
+    transform: translateY(-25%); /* shift upward a bit */
+    
+    background-color: #4D4D4D;
+    color: #ffffff;
+    border-radius: 20px;  /* Larger rounding to match screenshot */
+    width: 140px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 9999;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Each link inside the popup */
+  .popup-link {
+    width: 100%;
+    text-align: center;
+    padding: 0.6rem 0;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 0.95rem;
+    cursor: pointer;
+  }
+  
+  .popup-link:hover {
+    background-color: #3a3a3a;
+  }
