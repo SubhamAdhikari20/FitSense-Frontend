@@ -9,8 +9,8 @@ import Login from "./pages/authentication/Login";
 import ForgotPassword from "./pages/authentication/ForgotPassword.jsx";
 import Dashboard from './pages/dashboard/Dashboard.jsx';
 import Workouts from "./pages/dashboard/Workouts.jsx";
-import NavbarDashboard from './components/layouts/dashboard_layout/NavbarDashboard.jsx';
 import UserDashboardSidebar from './components/layouts/dashboard_layout/UserDashboardSidebar.jsx';
+import './App.css';
 
 function App() {
     const { currentUser } = useSelector((state) => state.user);
@@ -18,26 +18,23 @@ function App() {
     return (
         <ThemeProvider theme={lightTheme}>
             <Router>
-
-                {/* {currentUser ? ( */}
-                    <>
-                        {/* <NavbarDashboard/> */}
-                        <UserDashboardSidebar/>
-                        {/* <Home /> */}
-                        {/* <Routes>
+                {currentUser ? (
+                    <div className="dashboard-root">
+                        <UserDashboardSidebar currentUser={currentUser} />
+                        <Routes>
                             <Route path="/" element={<Navigate to="/dashboard" />} />
                             <Route path="/dashboard" element={<Dashboard />} />
                             <Route path="/workouts" element={<Workouts />} />
-                        </Routes> */}
-                    </>
-                {/* ) : (
+                        </Routes>
+                    </div>
+                ) : (
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/forgot_password" element={<ForgotPassword />} />
                     </Routes>
-                )} */}
+                )}
 
             </Router>
         </ThemeProvider>

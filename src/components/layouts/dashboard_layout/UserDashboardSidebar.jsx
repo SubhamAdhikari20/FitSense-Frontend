@@ -95,44 +95,6 @@ const UserDashboardSidebar = ({ currentUser }) => {
                         <MenuRounded sx={{ color: "inherit" }} />
                     </div>
 
-
-                    {/* Mobile Slideout Menu */}
-                    {/* <div className={`mobile-menu ${isOpen ? "open" : ""}`}>
-                        <Nav className="flex-column">
-                            <Nav.Link
-                                as={Link}
-                                to="/dashbaord"
-                                onClick={() => setIsOpen(false)}
-                                className="nav-item-custom"
-                            >
-                                Dashboard
-                            </Nav.Link>
-                            <Nav.Link
-                                as={Link}
-                                to="/trainers"
-                                onClick={() => setIsOpen(false)}
-                                className="nav-item-custom"
-                            >
-                                Get a Trainer
-                            </Nav.Link>
-                            <Nav.Link
-                                as={Link}
-                                to="/workouts"
-                                onClick={() => setIsOpen(false)}
-                                className="nav-item-custom"
-                            >
-                                Workouts
-                            </Nav.Link>
-                            <Nav.Link
-                                as={Link}
-                                to="/blogs"
-                                onClick={() => setIsOpen(false)}
-                                className="nav-item-custom"
-                            >
-                                Blogs
-                            </Nav.Link>
-                        </Nav>
-                    </div> */}
                 </Container>
 
                 {/* The Logout Confirmation Modal */}

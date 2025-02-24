@@ -1,3 +1,8 @@
+.dashboard-section .dashboard-section-container{
+    margin: 0;
+    max-width: 100%;
+}
+
 .dashboard-section .dashboard-section-container .row-wrapper {
     flex: 1;
     max-width: 1400px;
