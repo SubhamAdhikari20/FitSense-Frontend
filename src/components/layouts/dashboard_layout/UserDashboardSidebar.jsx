@@ -176,7 +176,7 @@ const UserMenu = ({ currentUser, onLogoutClick }) => {
     return (
         <div className="user-menu" ref={menuRef}>
             <Avatar
-                src={currentUser?.img}
+                src={currentUser?.profilePicture}
                 onClick={toggleMenu}
                 style={{ cursor: "pointer", width: 60, height: 60 }}
             >

@@ -20,9 +20,18 @@ export const userSlice = createSlice({
             state.currentUser = null;
             localStorage.removeItem("fitsense-app-token");
         },
+        updateProfilePictureSuccess: (state, action) => {
+            if (state.currentUser) {
+                state.currentUser.profilePicture = action.payload;
+            }
+        },
+        deleteUserSuccess: (state) => {
+            state.currentUser = null;
+            localStorage.removeItem("fitsense-app-token");
+        }
     },
 });
 
-export const { registerSuccess, loginSuccess, logout } = userSlice.actions;
+export const { registerSuccess, loginSuccess, logout, deleteUserSuccess, updateProfilePictureSuccess } = userSlice.actions;
 
 export default userSlice.reducer;

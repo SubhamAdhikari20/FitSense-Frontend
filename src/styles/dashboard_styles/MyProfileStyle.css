@@ -75,3 +75,8 @@
     padding: 8px 20px;
     font-size: 16px;
 }
+
+
+.confirm-delete-modal{
+    z-index: 10000;
+}

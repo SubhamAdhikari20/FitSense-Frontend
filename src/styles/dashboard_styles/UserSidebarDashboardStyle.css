@@ -122,6 +122,8 @@
 .user-menu {
     position: relative;
     display: inline-block;
+    border-radius: 50%;
+    border: 3px solid rgb(70, 52, 232);
 }
 
 .profile-popup {
