@@ -1,0 +1,76 @@
+/* ============ TRAINER CARD ============ */
+.trainer-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--card-border);
+    box-shadow: 1px 6px 20px 0px var(--card-box-shadow);
+}
+
+/* The left portion of the card (avatar + text) */
+.trainer-card-body {
+    display: flex;
+    align-items: center;
+}
+
+/* Simple circle avatar placeholder */
+.trainer-card-avatar {
+    width: 50px;
+    height: 50px;
+    background-color: #ddd;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+/* Trainer text styling */
+.trainer-card-text h1 {
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+    font-size: 22px;
+    font-family: inherit;
+    text-transform: none;
+}
+
+/* ============ DELETE BUTTON (Trash Icon) ============ */
+.delete-btn {
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+.delete-icon {
+    background-color: #f44336;
+    color: #fff;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.delete-icon i{
+    font: 20px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.delete-icon:hover {
+    background-color: #d32f2f;
+}
+

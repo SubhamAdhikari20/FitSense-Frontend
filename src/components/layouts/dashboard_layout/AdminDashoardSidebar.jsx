@@ -9,7 +9,7 @@ import { Avatar } from "@mui/material";
 import { logout } from "./../../../redux/reducers/userSlice.js";
 import MyProfile from './../../../pages/dashboard/MyProfile.jsx';
 
-const UserDashboardSidebar = ({ currentUser }) => {
+const AdminDashboardSidebar = ({ currentUser }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -60,21 +60,21 @@ const UserDashboardSidebar = ({ currentUser }) => {
 
                         {/* Nav Items (Desktop) */}
                         <Nav className="flex-column sidebar-nav">
-                            <Nav.Link as={Link} to="/dashboard" className="nav-item-custom">
+                            <Nav.Link as={Link} to="/admin-dashboard" className="nav-item-custom">
                                 Dashboard
                             </Nav.Link>
 
-                            <Nav.Link as={Link} to="/trainers" className="nav-item-custom">
-                                Get a Trainer
+                            <Nav.Link as={Link} to="/add-trainers" className="nav-item-custom">
+                                Trainer
                             </Nav.Link>
 
-                            <Nav.Link as={Link} to="/workouts" className="nav-item-custom">
+                            {/* <Nav.Link as={Link} to="/workouts" className="nav-item-custom">
                                 Workouts
                             </Nav.Link>
 
                             <Nav.Link as={Link} to="/blogs" className="nav-item-custom">
                                 Blogs
-                            </Nav.Link>
+                            </Nav.Link> */}
                         </Nav>
 
                         {/* Bottom Section: Avatar & Popup Menu */}
@@ -109,7 +109,7 @@ const UserDashboardSidebar = ({ currentUser }) => {
     );
 };
 
-export default UserDashboardSidebar;
+export default AdminDashboardSidebar;
 
 /*LOGOUT MODAL COMPONENT*/
 const LogoutModal = ({ show, onClose, onLogout }) => {

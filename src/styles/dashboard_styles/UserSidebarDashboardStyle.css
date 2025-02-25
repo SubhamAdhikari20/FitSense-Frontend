@@ -256,12 +256,12 @@
         display: none;
         background-color: var(--e-global-color-primary);
         /* background-color: white; */
-        position: absolute;
+        position: fixed;
         top: 0px;
         right: 0px;
-        width: 30vw;
+        width: 30%;
         height: 100vh;
-        z-index: 2000;;
+        z-index: 2000;
         padding: 4rem 1rem;
         transition: right 0.3s ease;
 
@@ -292,7 +292,7 @@
         display: none;
         background-color: var(--e-global-color-primary);
         /* background-color: white; */
-        position: absolute;
+        position: fixed;
         top: 0px;
         right: 0px;
         width: 250px;

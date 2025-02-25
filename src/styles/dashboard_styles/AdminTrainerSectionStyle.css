@@ -1,0 +1,157 @@
+.trainer-section{
+    padding: 10px 15px;
+}
+
+.trainer-container {
+    background-color: #cfe9dc;
+    min-height: 82vh;
+    border-radius: 15px;
+    padding: 2rem;
+    overflow: hidden;
+}
+
+/* Page title (white background behind text) */
+.page-title {
+    color: #333;
+    display: inline-block;
+    font-weight: 500;
+    font-size: 35px;
+    text-transform: none;
+    text-decoration: none;
+}
+
+/* Trainer Box */
+.total-trainer-box {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 15px;
+    border: 1px solid var(--card-border);
+    box-shadow: 1px 6px 20px 0px var(--card-box-shadow);
+}
+
+.total-trainer-box span{
+    font-size: 1.75rem;
+    padding: 10px 0;
+    font-weight: 600;
+    align-items: center;
+}
+
+.trainer-count {
+    color: #f44336;
+    margin-left: 0.5rem;
+}
+
+/* ============ LEFT FORM ============ */
+.trainer-form-wrapper {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 1rem;
+}
+
+/* The "Add Trainer" button: coral or salmon color */
+.add-trainer-btn {
+    background-color: #ff6f61;
+    width: 100%;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    text-transform: none;
+    --mdb-btn-box-shadow: 0 4px 9px -4px rgba(var(--mdb-box-shadow-color-rgb), 0.35);
+}
+
+.add-trainer-btn:hover {
+    background-color: #ff5a4e;
+}
+
+/* ============ RIGHT COLUMN ============ */
+.trainer-info-wrapper {
+    padding: 0 1rem;
+    height: 500px;
+    overflow-y: scroll;
+}
+
+/* ============ TRAINER CARDS ============ */
+.trainer-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
+/* The left portion of the card (avatar + text) */
+.trainer-card-body {
+    display: flex;
+    align-items: center;
+}
+
+/* Simple circle avatar placeholder */
+.trainer-card-avatar {
+    width: 50px;
+    height: 50px;
+    background-color: #ddd;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+/* Trainer text styling */
+.trainer-card-text h5 {
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+}
+
+/* ============ DELETE BUTTON (Trash Icon) ============ */
+.delete-btn {
+    color: #f44336;
+    font-size: 1.25rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.delete-btn:hover {
+    color: #d32f2f;
+}
+
+
+.trainer-password-container{
+    height: 45px;
+}
+
+.password-group{
+    width: 100%;
+}
+
+.password-group input{
+    padding-right: 45px;
+}
+
+
+.toggle-password-btn{
+    position: relative;
+    right: -91%;
+    top: -20px;
+    transform: translateY(-50%);
+    padding: 0;
+    z-index: 10;
+    background: none;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}

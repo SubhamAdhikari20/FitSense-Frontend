@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import { ThemeProvider, styled } from "styled-components";
 import { lightTheme } from './utils/theme.js';
 import { useSelector } from "react-redux";
+import './App.css';
 import Home from "./pages/landing/Home";
 import SignUp from "./pages/authentication/SignUp";
 import Login from "./pages/authentication/Login";
@@ -10,7 +11,7 @@ import ForgotPassword from "./pages/authentication/ForgotPassword.jsx";
 import Dashboard from './pages/dashboard/Dashboard.jsx';
 import Workouts from "./pages/dashboard/Workouts.jsx";
 import UserDashboardSidebar from './components/layouts/dashboard_layout/UserDashboardSidebar.jsx';
-import './App.css';
+import AdminTrainer from './pages/dashboard/AdminTrainer.jsx';
 
 function App() {
     const { currentUser } = useSelector((state) => state.user);
@@ -25,6 +26,7 @@ function App() {
                             <Route path="/" element={<Navigate to="/dashboard" />} />
                             <Route path="/dashboard" element={<Dashboard />} />
                             <Route path="/workouts" element={<Workouts />} />
+                            <Route path="/trainers" element={<AdminTrainer />} />
                         </Routes>
                     </div>
                 ) : (
