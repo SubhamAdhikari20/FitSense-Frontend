@@ -7,16 +7,14 @@ import "./../../../styles/dashboard_styles/UserSidebarDashboardStyle.css";
 import { MenuRounded, CloseRounded } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
 import { logout } from "./../../../redux/reducers/userSlice.js";
-import MyProfile from './../../../pages/dashboard/MyProfile.jsx';
+import TrainerProfile from './../../../pages/dashboard/TrainerProfile.jsx';
 
-const AdminDashboardSidebar = ({ currentUser }) => {
+const TrainerDashboardSidebar = ({ currentUser }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const [isSticky, setIsSticky] = useState(false);
-    // mobile menu open/close
     const [isOpen, setIsOpen] = useState(false);
-    // Logout confirmation modal
     const [showModal, setShowModal] = useState(false);
 
     // Actual logout action
@@ -60,21 +58,17 @@ const AdminDashboardSidebar = ({ currentUser }) => {
 
                         {/* Nav Items (Desktop) */}
                         <Nav className="flex-column sidebar-nav">
-                            <Nav.Link as={Link} to="/admin-dashboard" className="nav-item-custom">
+                            <Nav.Link as={Link} to="/dashboard" className="nav-item-custom">
                                 Dashboard
                             </Nav.Link>
 
-                            <Nav.Link as={Link} to="/add-trainers" className="nav-item-custom">
-                                Trainer
-                            </Nav.Link>
-
-                            {/* <Nav.Link as={Link} to="/workouts" className="nav-item-custom">
-                                Workouts
+                            <Nav.Link as={Link} to="/users" className="nav-item-custom">
+                                Trainees
                             </Nav.Link>
 
                             <Nav.Link as={Link} to="/blogs" className="nav-item-custom">
                                 Blogs
-                            </Nav.Link> */}
+                            </Nav.Link>
                         </Nav>
 
                         {/* Bottom Section: Avatar & Popup Menu */}
@@ -109,7 +103,9 @@ const AdminDashboardSidebar = ({ currentUser }) => {
     );
 };
 
-export default AdminDashboardSidebar;
+export default TrainerDashboardSidebar;
+
+
 
 /*LOGOUT MODAL COMPONENT*/
 const LogoutModal = ({ show, onClose, onLogout }) => {
@@ -176,7 +172,7 @@ const UserMenu = ({ currentUser, onLogoutClick }) => {
     return (
         <div className="user-menu" ref={menuRef}>
             <Avatar
-                src={currentUser?.img}
+                src={currentUser?.profilePicture}
                 onClick={toggleMenu}
                 style={{ cursor: "pointer", width: 60, height: 60 }}
             >
@@ -193,7 +189,7 @@ const UserMenu = ({ currentUser, onLogoutClick }) => {
                     </div>
                 </div>
             )}
-            <MyProfile show={myProfileShow} handleClose={() => setmyProfileShow(false)} currentUser={currentUser}/>
+            <TrainerProfile show={myProfileShow} handleClose={() => setmyProfileShow(false)} currentUser={currentUser} />
         </div>
     );
 };

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Col, Container, Row, Form, Button, FloatingLabel } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import "./../../styles/authentication_styles/LoginSectionStyle.css";
-import { loginUser } from './../../apis/Api.js';
+import { loginUser, loginTrainer, loginAdmin, getUserByEmail, getTrainerByEmail, getAdminByEmail } from './../../apis/Api.js';
 import { useDispatch } from "react-redux";
 import { loginSuccess } from './../../redux/reducers/userSlice.js';
 
@@ -43,17 +43,119 @@ const LoginSection = () => {
     };
 
     const handelLogin = async (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         setLoading(true);
         setButtonDisabled(true);
 
         if (validateInputs()) {
-            await loginUser({ email, password})
-                .then((res) => {
+            try {
+                // Check in the "User" table
+                let userResp = {};
+                try {
+                    userResp = await getUserByEmail({ email });
+                } 
+                catch (error) {
+                    // If not found (404), ignore
+                    if (error.response && error.response.status !== 404) {
+                        console.error("Error checking user table", error);
+                    }
+                }
+                if (userResp.data && userResp.data.user) {
+                    const res = await loginUser({ email, password });
+                    dispatch(loginSuccess(res.data));
+                    alert(res.data.message || "Logged in successfully as user!");
+                    navigate("/dashboard");
+                    return;
+                }
+
+                // Check in "Trainer" table:
+                let trainerResp = {};
+                try {
+                    trainerResp = await getTrainerByEmail({ email });
+                } 
+                catch (error) {
+                    if (error.response && error.response.status !== 404) {
+                        console.error("Error checking trainer table", error);
+                    }
+                }
+                if (trainerResp.data && trainerResp.data.trainer) {
+                    const res = await loginTrainer({ email, password });
+                    dispatch(loginSuccess(res.data));
+                    alert(res.data.message || "Logged in successfully as trainer!");
+                    navigate("/dashboard");
+                    return;
+                }
+
+                // Check in "Admin" table:
+                let adminResp = {};
+                try {
+                    adminResp = await getAdminByEmail({ email });
+                } 
+                catch (error) {
+                    if (error.response && error.response.status !== 404) {
+                        console.error("Error checking admin table", error);
+                    }
+                }
+                if (adminResp.data && adminResp.data.admin) {
+                    const res = await loginAdmin({ email, password });
+                    dispatch(loginSuccess(res.data));
+                    alert(res.data.message || "Logged in successfully as admin!");
+                    navigate("/dashboard");
+                    return;
+                }
+
+                // If not found in any table:
+                alert("Login failed. Email not found in our records.");
+
+                /*
+                const userResp = await getUserByEmail({ email });
+                if (userResp.data && userResp.data.user) {
+                    const res = await loginUser({ email, password });
                     dispatch(loginSuccess(res.data));
                     alert(res.data.message || "Logged in successfully!");
                     navigate("/dashboard");
-                    
+                    return;
+                }
+
+                // Next, check in the "Trainer" table
+                const trainerResp = await getTrainerByEmail({ email });
+                if (trainerResp.data && trainerResp.data.trainer) {
+                    const res = await loginTrainer({ email, password });
+                    dispatch(loginSuccess(res.data));
+                    alert(res.data.message || "Logged in successfully!");
+                    navigate("/dashboard");
+                    return;
+                }
+
+                // Finally, check in the "Admin" table
+                const adminResp = await getAdminByEmail({ email });
+                if (adminResp.data && adminResp.data.admin) {
+                    const res = await loginAdmin({ email, password });
+                    dispatch(loginSuccess(res.data));
+                    alert(res.data.message || "Logged in successfully!");
+                    navigate("/dashboard");
+                    return;
+                }
+
+                // If email is not found in any table, alert failure.
+                alert("Login failed. Email not found in our records.");
+                */
+            }
+            catch (error) {
+                alert(error?.response?.data?.error || "Login failed. Please, try again.");
+                console.error(error);
+            }
+            finally {
+                setLoading(false);
+                setButtonDisabled(false);
+            }
+
+            /*
+            await login({ email, password})
+                .then((res) => {
+                    dispatch(loginSuccess(res.data));
+                    alert(res.data.message || "Logged in successfully!");           
+                    navigate("/login")         
                 })
                 .catch((error) => {
                     alert(error?.response?.data?.error || "Login failed. Please, try again.");
@@ -62,6 +164,7 @@ const LoginSection = () => {
                     setLoading(false);
                     setButtonDisabled(false);
                 });
+            */
         }
 
     };

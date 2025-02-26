@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 import "./../../styles/dashboard_styles/AdminTrainerSectionStyle.css";
 import AddTrainerCard from './../../components/cards/AddTrainerCard.jsx';
 
@@ -15,13 +16,85 @@ const AdminTrainerSection = () => {
         setShowTrainerConfirmPassword(!showTrainerConfirmPassword);
     };
 
+    const navigate = useNavigate();
+
     // Form fields
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
-    const [contact, setContact] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
     const [experience, setExperience] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+
+    const validateInputs = () => {
+        // Frontend validation
+        if (!fullName || !email || !phoneNumber || !experience || !password || !confirmPassword) {
+            alert("Please, insert all details!!!");
+            setLoading(false);
+            setButtonDisabled(false);
+            return false;
+        }
+
+        if (password !== confirmPassword) {
+            alert("Passwords and Confirm Password don't match!");
+            setLoading(false);
+            setButtonDisabled(false);
+            return false;
+        }
+
+        if (!/^\S+@\S+\.\S+$/.test(email)) {
+            alert("Please enter a valid email address!");
+            setLoading(false);
+            setButtonDisabled(false);
+            return false;
+        }
+
+        if (!/^\d+$/.test(phoneNumber)) {
+            alert("Mobile number must contain only digits!");
+            setLoading(false);
+            setButtonDisabled(false);
+            return false;
+        }
+
+        if (!/^\d+$/.test(experience)) {
+            alert("Experience must contain only digits!");
+            setLoading(false);
+            setButtonDisabled(false);
+            return false;
+        }
+
+        if (phoneNumber.length !== 10) {
+            alert("Nepali numbers must be 10 digits!");
+            setLoading(false);
+            setButtonDisabled(false);
+            return false;
+        }
+
+        if (experience.length !== 2) {
+            alert("Experience must be 2 digits!");
+            setLoading(false);
+            setButtonDisabled(false);
+            return false;
+        }
+
+        if (password.length < 8) {
+            alert("Password must be at least 8 characters!");
+            setLoading(false);
+            setButtonDisabled(false);
+            return false;
+        }
+
+        // if (!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(password)) {
+        //     alert("Password must contain 8+ characters with uppercase, lowercase, and number");
+        //     setLoading(false);
+        //     setButtonDisabled(false);
+        //     return false;
+        // }
+
+        return true;
+    };
+
+
 
     // Example
     const [trainers, setTrainers] = useState([
@@ -29,82 +102,85 @@ const AdminTrainerSection = () => {
             id: 1,
             name: "Subham Adhikari",
             email: "subhamadhikari20@gmail.com",
-            contact: "9864989898",
+            phoneNumber: "9864989898",
             experience: "2 years",
         },
         {
             id: 2,
             name: "Ayush Adhikari",
             email: "ayushadhikari00@gmail.com",
-            contact: "986498888",
+            phoneNumber: "986498888",
             experience: "2 years",
         },
         {
             id: 3,
             name: "Ayush Adhikari",
             email: "ayushadhikari00@gmail.com",
-            contact: "986498888",
+            phoneNumber: "986498888",
             experience: "2 years",
         },
         {
             id: 4,
             name: "Ayush Adhikari",
             email: "ayushadhikari00@gmail.com",
-            contact: "986498888",
+            phoneNumber: "986498888",
             experience: "2 years",
         },
         {
             id: 5,
             name: "Ayush Adhikari",
             email: "ayushadhikari00@gmail.com",
-            contact: "986498888",
+            phoneNumber: "986498888",
             experience: "2 years",
         },
         {
             id: 6,
             name: "Ayush Adhikari",
             email: "ayushadhikari00@gmail.com",
-            contact: "986498888",
+            phoneNumber: "986498888",
             experience: "2 years",
         },
         {
             id: 7,
             name: "Ayush Adhikari",
             email: "ayushadhikari00@gmail.com",
-            contact: "986498888",
+            phoneNumber: "986498888",
             experience: "2 years",
         },
 
     ]);
 
     // Handler: Add a new trainer (example only)
-    const handleAddTrainer = () => {
-        if (!fullName || !email || !contact || !experience || !password || !confirmPassword) {
-            alert("Please fill all fields!");
-            return;
-        }
-        if (password !== confirmPassword) {
-            alert("Passwords do not match!");
-            return;
+    const handleAddTrainer = async (e) => {
+        e.preventDefault();
+
+        if (validateInputs()) {
+            await registerTrainer({
+                fullName: fullName,
+                email: email,
+                phoneNumber: phoneNumber,
+                password: password,
+                experience: experience
+            })
+                .then((res) => {
+                    alert(res.data.message || "Trainer Account created successfully!");
+                    
+                })
+                .catch((error) => {
+                    console.error("Registration error response:", error.response);
+                    alert(error?.response?.data?.error || "Registration failed. Please try again.");
+                })
         }
 
         const newTrainer = {
-            id: trainers.length + 1,
             fullName,
             email,
-            contact,
+            phoneNumber,
             experience,
         };
 
         setTrainers([...trainers, newTrainer]);
 
-        // Clear form fields
-        // setFullName("");
-        // setEmail("");
-        // setContact("");
-        // setExperience("");
-        // setPassword("");
-        // setConfirmPassword("");
     };
 
     // Handler: Delete a trainer from the list
@@ -151,18 +227,18 @@ const AdminTrainerSection = () => {
                                 />
                             </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="contact">
+                            <Form.Group className="mb-3" controlId="phoneNumber">
                                 <Form.Control
                                     type="text"
                                     placeholder="Contact"
-                                    value={contact}
-                                    onChange={(e) => setContact(e.target.value)}
+                                    value={phoneNumber}
+                                    onChange={(e) => setPhoneNumber(e.target.value)}
                                 />
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="experience">
                                 <Form.Control
-                                    type="text"
+                                    type="number"
                                     placeholder="Experience"
                                     value={experience}
                                     onChange={(e) => setExperience(e.target.value)}

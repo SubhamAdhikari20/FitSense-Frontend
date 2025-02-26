@@ -1,15 +1,15 @@
 import React from "react";
 import LayoutDashboard from "../../components/layouts/dashboard_layout/LayoutDashboard";
-import AdminTrainerSection from './AdminTrainerSection.jsx';
+import TrainerTraineeSection from './TrainerTraineeSection.jsx';
 
-const AdminTrainer = () => {
+const TrainerTrainee = () => {
     return (
         <>
             <LayoutDashboard>
-                <AdminTrainerSection />
+                <TrainerTraineeSection />
             </LayoutDashboard>
         </>
     );
 };
 
-export default AdminTrainer;
+export default TrainerTrainee;

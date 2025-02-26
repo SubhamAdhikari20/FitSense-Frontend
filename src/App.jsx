@@ -11,6 +11,9 @@ import ForgotPassword from "./pages/authentication/ForgotPassword.jsx";
 import Dashboard from './pages/dashboard/Dashboard.jsx';
 import Workouts from "./pages/dashboard/Workouts.jsx";
 import UserDashboardSidebar from './components/layouts/dashboard_layout/UserDashboardSidebar.jsx';
+import TrainerDashboardSidebar from './components/layouts/dashboard_layout/TrainerDashboardSidebar.jsx';
+import AdminDashboardSidebar from './components/layouts/dashboard_layout/AdminDashboardSidebar.jsx';
+import TrainerTrainee from './pages/dashboard/TrainerTrainee.jsx';
 import AdminTrainer from './pages/dashboard/AdminTrainer.jsx';
 
 function App() {
@@ -20,15 +23,34 @@ function App() {
         <ThemeProvider theme={lightTheme}>
             <Router>
                 {currentUser ? (
-                    <div className="dashboard-root">
-                        <UserDashboardSidebar currentUser={currentUser} />
-                        <Routes>
-                            <Route path="/" element={<Navigate to="/dashboard" />} />
-                            <Route path="/dashboard" element={<Dashboard />} />
-                            <Route path="/workouts" element={<Workouts />} />
-                            <Route path="/trainers" element={<AdminTrainer />} />
-                        </Routes>
-                    </div>
+                    currentUser.role === "user" ? (
+                        <div className="dashboard-root">
+                            <UserDashboardSidebar currentUser={currentUser} />
+                            <Routes>
+                                <Route path="/" element={<Navigate to="/dashboard" />} />
+                                <Route path="/dashboard" element={<Dashboard />} />
+                                <Route path="/workouts" element={<Workouts />} />
+                            </Routes>
+                        </div>
+                    ) : currentUser.role === "trainer" ? (
+                        <div className="dashboard-root">
+                            <TrainerDashboardSidebar currentUser={currentUser} />
+                            <Routes>
+                                <Route path="/" element={<Navigate to="/dashboard" />} />
+                                <Route path="/dashboard" element={<Dashboard />} />
+                                <Route path="/users" element={<TrainerTrainee />} />
+                            </Routes>
+                        </div>
+                    ) : (
+                        // currentUser.role === "admin"
+                        <div className="dashboard-root">
+                            <AdminDashboardSidebar currentUser={currentUser} />
+                            <Routes>
+                                <Route path="/" element={<Navigate to="/trainers" />} />
+                                <Route path="/trainers" element={<AdminTrainer />} />
+                            </Routes>
+                        </div>
+                    )
                 ) : (
                     <Routes>
                         <Route path="/" element={<Home />} />

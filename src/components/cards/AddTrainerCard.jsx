@@ -16,7 +16,7 @@ const AddTrainerCard = ({ trainer, onDelete }) => {
                     <h1 className="mb-1">{name}</h1>
                     <p className="mb-0">{email}</p>
                     <p className="mb-0">{contact}</p>
-                    <p className="mb-0">{experience}</p>
+                    <p className="mb-0">{experience} years</p>
                 </div>
             </div>
             <Button variant="link" className="delete-btn" onClick={onDelete}>

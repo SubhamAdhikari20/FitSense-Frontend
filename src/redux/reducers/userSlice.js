@@ -13,7 +13,7 @@ export const userSlice = createSlice({
             localStorage.setItem("fitsense-app-token", action.payload.token);
         },
         loginSuccess: (state, action) => {
-            state.currentUser = action.payload.user;
+            state.currentUser = action.payload.user;    // user object must include a 'role' property
             localStorage.setItem("fitsense-app-token", action.payload.token);
         },
         logout: (state) => {
