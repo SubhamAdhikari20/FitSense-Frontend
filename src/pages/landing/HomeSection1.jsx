@@ -4,24 +4,12 @@ import Typed from "typed.js";
 import { useEffect, useState } from "react";
 import "./../../styles/landing_styles/HomeSection1Style.css";
 import Video_img from "./../../assets/images/video_play_img.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Bg from './../../assets/images/bg1.jpg';
 
 const HomeSection1 = () => {
-    // useEffect(() => {
-    //     // Initialize Typed.js
-    //     const typed = new Typed("#element", {
-    //         strings: ["Best Life", "Quality Life", "Healthy Life"],
-    //         typeSpeed: 50,
-    //         backSpeed: 25,
-    //         loop: true, // Keep the typing effect looping
-    //     });
-
-    //     // Cleanup function to destroy Typed instance when component unmounts
-    //     return () => {
-    //         typed.destroy();
-    //     };
-    // }, []);
+    const navigate = useNavigate();
+    
 
     const [index, setIndex] = useState(0);
     const handleSelect = (selectedIndex) => {
@@ -117,7 +105,7 @@ const HomeSection1 = () => {
 
                 <Row>
                     <Col className="row2-column1">
-                        <Button variant="secondary" className="get-started-btn">
+                        <Button variant="secondary" className="get-started-btn" onClick={navigate("/login")}>
                             Get Started
                         </Button>
                     </Col>

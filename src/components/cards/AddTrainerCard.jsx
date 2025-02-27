@@ -1,21 +1,26 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import './../../styles/cards_styles/AddTrainerCardStyle.css';
+import { Avatar } from "@mui/material";
 
 const AddTrainerCard = ({ trainer, onDelete }) => {
-    const { name, email, contact, experience } = trainer;
+    const { fullName, email, phoneNumber, experience, profilePicture } = trainer;
 
     // trainer's name as an avatar
-    const avatarLetter = name ? name.charAt(0).toUpperCase() : "U";
+    const avatarLetter = fullName ? fullName.charAt(0).toUpperCase() : "U";
 
     return (
         <div className="trainer-card">
             <div className="trainer-card-body">
-                <div className="trainer-card-avatar">{avatarLetter}</div>
+                <div className="avatar-container ">
+                    <Avatar src={profilePicture} style={{ width: 50, height: 50 }}>
+                        {avatarLetter}
+                    </Avatar>
+                </div>
                 <div className="trainer-card-text">
-                    <h1 className="mb-1">{name}</h1>
+                    <h1 className="mb-1">{fullName}</h1>
                     <p className="mb-0">{email}</p>
-                    <p className="mb-0">{contact}</p>
+                    <p className="mb-0">{phoneNumber}</p>
                     <p className="mb-0">{experience} years</p>
                 </div>
             </div>

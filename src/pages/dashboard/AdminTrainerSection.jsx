@@ -3,20 +3,12 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import "./../../styles/dashboard_styles/AdminTrainerSectionStyle.css";
 import AddTrainerCard from './../../components/cards/AddTrainerCard.jsx';
+import { registerTrainer, getAllTrainers, deleteTrainer } from './../../apis/Api.js';
+import { useDispatch } from "react-redux";
 
 const AdminTrainerSection = () => {
-    const [showTrainerPassword, setShowTrainerPassword] = useState(false);
-    const [showTrainerConfirmPassword, setShowTrainerConfirmPassword] =
-        useState(false);
-
-    const toggleTrainerPasswordVisibility = () => {
-        setShowTrainerPassword(!showTrainerPassword);
-    };
-    const toggleTrainerConfirmPasswordVisibility = () => {
-        setShowTrainerConfirmPassword(!showTrainerConfirmPassword);
-    };
-
-    const navigate = useNavigate();
+    // fetchAllTrainers();
+    const dispatch = useDispatch();
 
     // Form fields
     const [fullName, setFullName] = useState("");
@@ -25,6 +17,22 @@ const AdminTrainerSection = () => {
     const [experience, setExperience] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+
+    // Loading state for form submission
+    const [loading, setLoading] = useState(false);
+    const [buttonDisabled, setButtonDisabled] = useState(false);
+
+    // Loading state for form submission
+    const [showTrainerPassword, setShowTrainerPassword] = useState(false);
+    const [showTrainerConfirmPassword, setShowTrainerConfirmPassword] = useState(false);
+
+    const toggleTrainerPasswordVisibility = () => {
+        setShowTrainerPassword(!showTrainerPassword);
+    };
+    const toggleTrainerConfirmPasswordVisibility = () => {
+        setShowTrainerConfirmPassword(!showTrainerConfirmPassword);
+    };
+
 
     const validateInputs = () => {
         // Frontend validation
@@ -70,12 +78,12 @@ const AdminTrainerSection = () => {
             return false;
         }
 
-        if (experience.length !== 2) {
-            alert("Experience must be 2 digits!");
-            setLoading(false);
-            setButtonDisabled(false);
-            return false;
-        }
+        // if (experience.length <= 2) {
+        //     alert("Experience must be 2 digits!");
+        //     setLoading(false);
+        //     setButtonDisabled(false);
+        //     return false;
+        // }
 
         if (password.length < 8) {
             alert("Password must be at least 8 characters!");
@@ -95,64 +103,34 @@ const AdminTrainerSection = () => {
     };
 
 
+    // Trainers list state (fetched from database)
+    const [trainers, setTrainers] = useState([]);
 
-    // Example
-    const [trainers, setTrainers] = useState([
-        {
-            id: 1,
-            name: "Subham Adhikari",
-            email: "subhamadhikari20@gmail.com",
-            phoneNumber: "9864989898",
-            experience: "2 years",
-        },
-        {
-            id: 2,
-            name: "Ayush Adhikari",
-            email: "ayushadhikari00@gmail.com",
-            phoneNumber: "986498888",
-            experience: "2 years",
-        },
-        {
-            id: 3,
-            name: "Ayush Adhikari",
-            email: "ayushadhikari00@gmail.com",
-            phoneNumber: "986498888",
-            experience: "2 years",
-        },
-        {
-            id: 4,
-            name: "Ayush Adhikari",
-            email: "ayushadhikari00@gmail.com",
-            phoneNumber: "986498888",
-            experience: "2 years",
-        },
-        {
-            id: 5,
-            name: "Ayush Adhikari",
-            email: "ayushadhikari00@gmail.com",
-            phoneNumber: "986498888",
-            experience: "2 years",
-        },
-        {
-            id: 6,
-            name: "Ayush Adhikari",
-            email: "ayushadhikari00@gmail.com",
-            phoneNumber: "986498888",
-            experience: "2 years",
-        },
-        {
-            id: 7,
-            name: "Ayush Adhikari",
-            email: "ayushadhikari00@gmail.com",
-            phoneNumber: "986498888",
-            experience: "2 years",
-        },
+    const fetchAllTrainers = async () => {
+        try {
+            const response = await getAllTrainers();
+            // Assuming your backend returns { getAllTrainers: [...] }
+            if (response.data && response.data.getAllTrainers) {
+                setTrainers(response.data.getAllTrainers);
+            } else {
+                setTrainers([]);
+            }
+        } catch (error) {
+            console.error("Error fetching trainers:", error);
+            alert("Error fetching trainers. Please try again later.");
+        }
 
-    ]);
+    };
+
+    useEffect(() => {
+        fetchAllTrainers();
+    }, []);
 
     // Handler: Add a new trainer (example only)
     const handleAddTrainer = async (e) => {
         e.preventDefault();
+        setLoading(true);
+        setButtonDisabled(true);
 
         if (validateInputs()) {
             await registerTrainer({
@@ -163,29 +141,36 @@ const AdminTrainerSection = () => {
                 experience: experience
             })
                 .then((res) => {
+                    fetchAllTrainers();
                     alert(res.data.message || "Trainer Account created successfully!");
-                    
+
                 })
                 .catch((error) => {
                     console.error("Registration error response:", error.response);
-                    alert(error?.response?.data?.error || "Registration failed. Please try again.");
+                    alert(error?.response?.data?.error || "Registration failed. Please, try again.");
                 })
+                .finally(() => {
+                    setLoading(false);
+                    setButtonDisabled(false);
+                });
         }
-
-        const newTrainer = {
-            fullName,
-            email,
-            phoneNumber,
-            experience,
-        };
-
-        setTrainers([...trainers, newTrainer]);
 
     };
 
-    // Handler: Delete a trainer from the list
-    const handleDeleteTrainer = (id) => {
-        const filtered = trainers.filter((t) => t.id !== id);
+    // Handle account Delete a trainer from the list
+    const handleDeleteTrainer = async (trainerEmail) => {
+        try {
+            const response = await deleteTrainer({ email: trainerEmail });
+            if (response.data && response.data.message) {
+                alert(response.data.message);
+                fetchAllTrainers();
+            }
+        }
+        catch (error) {
+            console.error("Failed to delete account:", error);
+            alert(error?.response?.data?.error || "Failed to delete account. Please try again later.");
+        }
+        const filtered = trainers.filter((t) => t.email !== email);
         setTrainers(filtered);
     };
 
@@ -208,12 +193,13 @@ const AdminTrainerSection = () => {
                 <Row>
                     {/* LEFT COLUMN: Trainer Form */}
                     <Col xs={12} md={4} className="mb-4">
-                        <Form className="trainer-form-wrapper">
+                        <Form className="trainer-form-wrapper" autoComplete="off">
                             <Form.Group className="mb-3" controlId="fullName">
                                 <Form.Control
                                     type="text"
                                     placeholder="Name"
                                     value={fullName}
+                                    autoComplete="off"
                                     onChange={(e) => setFullName(e.target.value)}
                                 />
                             </Form.Group>
@@ -222,6 +208,7 @@ const AdminTrainerSection = () => {
                                 <Form.Control
                                     type="email"
                                     placeholder="Email"
+                                    autoComplete="off"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
@@ -231,6 +218,7 @@ const AdminTrainerSection = () => {
                                 <Form.Control
                                     type="text"
                                     placeholder="Contact"
+                                    autoComplete="off"
                                     value={phoneNumber}
                                     onChange={(e) => setPhoneNumber(e.target.value)}
                                 />
@@ -240,6 +228,7 @@ const AdminTrainerSection = () => {
                                 <Form.Control
                                     type="number"
                                     placeholder="Experience"
+                                    autoComplete="off"
                                     value={experience}
                                     onChange={(e) => setExperience(e.target.value)}
                                 />
@@ -255,7 +244,7 @@ const AdminTrainerSection = () => {
                                                     : "password"
                                             }
                                             placeholder="Password"
-                                            autoComplete="password"
+                                            autoComplete="off"
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
                                         />
@@ -289,7 +278,7 @@ const AdminTrainerSection = () => {
                                                     : "password"
                                             }
                                             placeholder="Confirm Password"
-                                            autoComplete="confirm-password"
+                                            autoComplete="off"
                                             value={confirmPassword}
                                             onChange={(e) => setConfirmPassword(e.target.value)}
                                         />
@@ -311,8 +300,8 @@ const AdminTrainerSection = () => {
                                 </Col>
                             </Row>
 
-                            <Button className="add-trainer-btn ">
-                                Add Trainer
+                            <Button className="add-trainer-btn " onClick={handleAddTrainer} disabled={buttonDisabled}>
+                                {loading ? "Adding Trainer..." : "Add Trainer"}
                             </Button>
                         </Form>
                     </Col>
@@ -322,9 +311,9 @@ const AdminTrainerSection = () => {
                         {/* List of Trainer Cards */}
                         {trainers.map((trainer) => (
                             <AddTrainerCard
-                                key={trainer.id}
+                                key={trainer.email}
                                 trainer={trainer}
-                                onDelete={() => handleDeleteTrainer(trainer.id)}
+                                onDelete={() => handleDeleteTrainer(trainer.email)}
                             />
                         ))}
                     </Col>
