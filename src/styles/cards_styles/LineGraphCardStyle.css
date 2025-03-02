@@ -1,6 +1,6 @@
-.category-chart-card {
-    background-color: #fff;
-    transition: all 0.3s ease;
+/* LineGraphStyle.css */
+
+.line-graph-card {
     flex: 1;
     min-width: 280px;
     padding: 24px;
@@ -12,10 +12,13 @@
     gap: 6px;
 }
 
-.category-chart-title {
+.line-graph-title {
     font-weight: 600;
     font-size: 16px;
     color: var(--primary);
+    font-family: inherit;
+    margin: 0;
+    text-transform: none;
 }
 
 .no-data {
@@ -25,20 +28,16 @@
     text-align: center;
 }
 
-/* .MuiChartsLegend-column{
-    margin-left: 20px;
-} */
-
-.MuiChartsLegend-series tspan {
-    font-size: 13px;
+.MuiChartsAxis-tickLabel tspan {
+    font-size: 12px;
 }
 
-@media screen and (max-width: 600px) {
-    .category-chart-card {
+@media (max-width: 600px) {
+    .line-graph-card {
         padding: 16px;
     }
 
-    .category-chart-title {
+    .line-graph-title {
         font-size: 14px;
     }
 }

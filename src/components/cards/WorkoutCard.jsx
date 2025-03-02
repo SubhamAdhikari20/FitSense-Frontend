@@ -1,98 +1,109 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FitnessCenterRounded, TimelapseRounded } from "@mui/icons-material";
+import { Button } from "react-bootstrap";
 import styled from "styled-components";
-import './../../styles/cards_styles/WorkoutCardStyle.css';
+import "./../../styles/cards_styles/WorkoutCardStyle.css";
 
-const WorkoutCard = ({ workout }) => {
+const WorkoutCard = ({
+    workout,
+    displayBtn = true,
+    onEdit,
+    onDelete,
+    onToggleCompletion,
+}) => {
+    const [loading, setLoading] = useState(false);
+
     return (
         <div className="workout-card">
-            <div className="workout-category">#{workout?.category}</div>
-            <div className="workout-name">{workout?.workoutName}</div>
+            <div>
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        width: "100%",
+                    }}
+                >
+                    <div
+                        className="workout-category"
+                        style={{ height: "fit-content" }}
+                    >
+                        #{workout?.category}
+                    </div>
+                    <div
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            height: "fit-content",
+                        }}
+                    >
+                        <div
+                            className="workout-sets"
+                            style={{ fontSize: "13px" }}
+                        >
+                            Achieved: {workout?.completed ? "true" : "false"}
+                        </div>
+                        <div style={{ height: "fit-content" }}>
+                            <Button
+                                variant="link"
+                                className="check-btn p-1"
+                                onClick={() => onToggleCompletion(workout.id)}
+                            >
+                                <i className={`bi ${workout?.completed ? "bi-check-circle-fill" : "bi-check-circle"}`}
+                                    style={{ color: workout?.completed ? "green" : "inherit", fontSize: "12px" }} />
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="workout-name">{workout?.workoutName}</div>
+            </div>
+
             <div className="workout-sets">
                 Count: {workout?.sets} sets X {workout?.reps} reps
             </div>
-            <div className="workout-flex">
-                <div className="workout-details">
-                    <FitnessCenterRounded sx={{ fontSize: "20px" }} />
-                    {workout?.weight} kg
+            <div
+                className="workout-flex"
+                style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    width: "100%",
+                }}
+            >
+                <div style={{ display: "flex", gap: "15px", width: "100%" }}>
+                    <div className="workout-details">
+                        <FitnessCenterRounded sx={{ fontSize: "20px" }} />
+                        {workout?.weight} kg
+                    </div>
+                    <div className="workout-details">
+                        <TimelapseRounded sx={{ fontSize: "20px" }} />
+                        {workout?.duration} min
+                    </div>
                 </div>
-                <div className="workout-details">
-                    <TimelapseRounded sx={{ fontSize: "20px" }} />
-                    {workout?.duration} min
-                </div>
+
+                {displayBtn && (
+                    <div style={{ display: "flex", gap: "15px" }}>
+                        <Button variant="link" className="edit-btn" onClick={() => onEdit(workout)}>
+                            <div className="edit-icon">
+                                <i
+                                    className="bi bi-pencil-square"
+                                    aria-hidden="true"
+                                ></i>
+                            </div>
+                        </Button>
+
+                        <Button variant="link" className="delete-btn" onClick={() => onDelete(workout.id)}>
+                            <div className="delete-icon">
+                                <i
+                                    className="bi bi-trash-fill"
+                                    aria-hidden="true"
+                                ></i>
+                            </div>
+                        </Button>
+                    </div>
+                )}
             </div>
         </div>
-
-        // <Card>
-        //     <Category>#{workout?.category}</Category>
-        //     <Name>{workout?.workoutName}</Name>
-        //     <Sets>
-        //         Count: {workout?.sets} sets X {workout?.reps} reps
-        //     </Sets>
-        //     <Flex>
-        //         <Details>
-        //             <FitnessCenterRounded sx={{ fontSize: "20px" }} />
-        //             {workout?.weight} kg
-        //         </Details>
-        //         <Details>
-        //             <TimelapseRounded sx={{ fontSize: "20px" }} />
-        //             {workout?.duration} min
-        //         </Details>
-        //     </Flex>
-        // </Card>
     );
 };
-
-
-const Card = styled.div`
-    flex: 1;
-    min-width: 250px;
-    max-width: 400px;
-    padding: 16px 18px;
-    border: 1px solid ${({ theme }) => theme.text_primary + 20};
-    border-radius: 14px;
-    box-shadow: 1px 6px 20px 0px ${({ theme }) => theme.primary + 15};
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    @media (max-width: 600px) {
-        padding: 12px 14px;
-    }
-`;
-const Category = styled.div`
-    width: fit-content;
-    font-size: 14px;
-    color: ${({ theme }) => theme.primary};
-    font-weight: 500;
-    background: ${({ theme }) => theme.primary + 20};
-    padding: 4px 10px;
-    border-radius: 8px;
-`;
-const Name = styled.div`
-    font-size: 20px;
-    color: ${({ theme }) => theme.text_primary};
-    font-weight: 600;
-`;
-const Sets = styled.div`
-    font-size: 15px;
-    color: ${({ theme }) => theme.text_secondary};
-    font-weight: 500;
-    display: flex;
-    gap: 6px;
-`;
-const Flex = styled.div`
-    display: flex;
-    gap: 16px;
-`;
-const Details = styled.div`
-    font-size: 15px;
-    color: ${({ theme }) => theme.text_primary};
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-`;
-
-
 
 export default WorkoutCard;

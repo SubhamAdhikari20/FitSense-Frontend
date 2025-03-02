@@ -8,6 +8,7 @@ import { MenuRounded, CloseRounded } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
 import { logout } from "./../../../redux/reducers/userSlice.js";
 import MyProfile from './../../../pages/dashboard/MyProfile.jsx';
+import UserProfile from './../../../pages/dashboard/UserProfile.jsx';
 
 const UserDashboardSidebar = ({ currentUser }) => {
     const dispatch = useDispatch();
@@ -72,9 +73,9 @@ const UserDashboardSidebar = ({ currentUser }) => {
                                 Workouts
                             </Nav.Link>
 
-                            <Nav.Link as={Link} to="/blogs" className="nav-item-custom">
+                            {/* <Nav.Link as={Link} to="/blogs" className="nav-item-custom">
                                 Blogs
-                            </Nav.Link>
+                            </Nav.Link> */}
                         </Nav>
 
                         {/* Bottom Section: Avatar & Popup Menu */}
@@ -153,6 +154,7 @@ const LogoutModal = ({ show, onClose, onLogout }) => {
 
 /* USER MENU COMPONENT (Avatar Popup)*/
 const UserMenu = ({ currentUser, onLogoutClick }) => {
+    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const menuRef = useRef(null);
 
@@ -173,6 +175,12 @@ const UserMenu = ({ currentUser, onLogoutClick }) => {
         };
     }, []);
 
+
+    // handle my proflie navigation
+    const handleMyProfile = () => {
+        navigate("/my_profile");
+    };
+
     return (
         <div className="user-menu" ref={menuRef}>
             <Avatar
@@ -185,7 +193,7 @@ const UserMenu = ({ currentUser, onLogoutClick }) => {
 
             {open && (
                 <div className="profile-popup">
-                    <div className="popup-link" onClick={() => setmyProfileShow(true)}>
+                    <div className="popup-link" onClick={handleMyProfile}>
                         My Profile
                     </div>
                     <div className="popup-link logout-btn" onClick={onLogoutClick}>
@@ -193,7 +201,9 @@ const UserMenu = ({ currentUser, onLogoutClick }) => {
                     </div>
                 </div>
             )}
-            <MyProfile show={myProfileShow} handleClose={() => setmyProfileShow(false)} currentUser={currentUser}/>
+            {/* <UserProfile /> */}
+
+            <MyProfile show={myProfileShow} handleClose={() => setmyProfileShow(false)} currentUser={currentUser} />
         </div>
     );
 };

@@ -19,6 +19,7 @@
 .workouts-section .workouts-section-container .row-wrapper .col-left {
     flex: 0.2;
     height: fit-content;
+    width: fit-content;
     padding: 18px;
     border: 1px solid var(--card-border);
     border-radius: 14px;
@@ -34,6 +35,7 @@
 
 .workouts-section .workouts-section-container .row-wrapper .col-right {
     flex: 1;
+    max-width: 70%;
 }
 
 .workouts-section .workouts-section-container .row-wrapper .col-right .col-right-section {
@@ -55,8 +57,94 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-    margin-bottom: 100px;
+    gap: 50px;
+    overflow-y: scroll;
+    max-height: 675px;
+    padding: 25px;
+}
+
+
+/* Left Workout Container */
+.left-workout-container {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    max-width: 30%;
+    gap: 15px;
+}
+
+/* Add Workout */
+.workouts-section .workouts-section-container .workout-form-wrapper {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 1rem;
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    box-shadow: 1px 6px 20px 0px var(--card-box-shadow);
+    align-items: center;
+    height: fit-content;
+    width: fit-content;
+}
+
+.workout-form-wrapper h1 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 20px;
+    text-transform: none;
+    color: var(--primary);
+}
+
+/* Dropdown */
+/* .dropdown-menu.show{
+    max-height: 200px;
+} */
+
+.dropdown-menu.show .list-unstyled {
+    margin-bottom: 5px;
+    max-height: 175px;
+    overflow-y: scroll;
+}
+
+
+/* The "Add Trainer" button: coral or salmon color */
+.workouts-section .workouts-section-container .add-workout-btn {
+    background-color: #ff6f61;
+    width: 100%;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    text-transform: none;
+    --mdb-btn-box-shadow: 0 4px 9px -4px rgba(var(--mdb-box-shadow-color-rgb), 0.35);
+}
+
+
+/* Completed Task */
+.completed-workouts{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+}
+
+.completed-workouts .workout-card {
+    opacity: 0.7;
+    background-color: #f8f9fa;
+    border-left: 4px solid #28a745;
+}
+
+.no-workouts {
+    text-align: center;
+    color: #6c757d;
+    padding: 1rem;
+    border: 1px dashed #dee2e6;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+
+.workouts-section .workouts-section-container .add-trainer-btn:hover {
+    background-color: #ff5a4e;
 }
 
 
@@ -77,6 +165,9 @@
     .workouts-section .workouts-section-container .row-wrapper .col-right .col-right-section .card-wrapper {
         gap: 12px;
     }
-    
+
 
 }
+
+
+

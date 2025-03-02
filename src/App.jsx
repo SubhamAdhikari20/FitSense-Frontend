@@ -15,6 +15,7 @@ import TrainerDashboardSidebar from './components/layouts/dashboard_layout/Train
 import AdminDashboardSidebar from './components/layouts/dashboard_layout/AdminDashboardSidebar.jsx';
 import TrainerTrainee from './pages/dashboard/TrainerTrainee.jsx';
 import AdminTrainer from './pages/dashboard/AdminTrainer.jsx';
+import UserProfile from './pages/dashboard/UserProfile.jsx';
 
 function App() {
     const { currentUser } = useSelector((state) => state.user);
@@ -29,16 +30,17 @@ function App() {
                             <Routes>
                                 <Route path="/" element={<Navigate to="/dashboard" />} />
                                 <Route path="/dashboard" element={<Dashboard />} />
-                                <Route path="/workouts" element={<Workouts />} />
+                                <Route path="/workouts" element={<Workouts currentUser={currentUser}/>} />
+                                <Route path="/trainers" element={<AdminTrainer />} />
+                                <Route path="/my_profile" element={<UserProfile currentUser={currentUser}/>} />
                             </Routes>
                         </div>
                     ) : currentUser.role === "trainer" ? (
                         <div className="dashboard-root">
                             <TrainerDashboardSidebar currentUser={currentUser} />
                             <Routes>
-                                <Route path="/" element={<Navigate to="/dashboard" />} />
-                                <Route path="/dashboard" element={<Dashboard />} />
-                                <Route path="/users" element={<TrainerTrainee />} />
+                                <Route path="/" element={<Navigate to="/trainees" />} />
+                                <Route path="/trainees" element={<TrainerTrainee />} />
                             </Routes>
                         </div>
                     ) : (
@@ -46,8 +48,8 @@ function App() {
                         <div className="dashboard-root">
                             <AdminDashboardSidebar currentUser={currentUser} />
                             <Routes>
-                                <Route path="/" element={<Navigate to="/trainers" />} />
-                                <Route path="/trainers" element={<AdminTrainer />} />
+                                <Route path="/" element={<Navigate to="/add-trainers" />} />
+                                <Route path="/add-trainers" element={<AdminTrainer />} />
                             </Routes>
                         </div>
                     )
@@ -65,19 +67,5 @@ function App() {
     );
 }
 
-
-
-
-const Container = styled.div`
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: ${({ theme }) => theme.bg};
-    color: ${({ theme }) => theme.text_primary};
-    overflow-x: hidden;
-    overflow-y: hidden;
-    transition: all 0.2s ease;
-`;
 
 export default App;

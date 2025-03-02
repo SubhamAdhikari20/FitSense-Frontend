@@ -4,75 +4,43 @@ import { PieChart } from "@mui/x-charts/PieChart";
 import './../../styles/cards_styles/CategoryCartStyle.css';
 
 const CategoryChartCard = ({ data }) => {
+    const pieData = Array.isArray(data?.pieChartData) ? data.pieChartData : [];
+
+
     return (
         <div className="category-chart-card">
-            <div className="category-chart-title">Weekly Calories Burned</div>
-            {data?.pieChartData && (
+            <div className="category-chart-title">Weekly Calories Burned (Category)</div>
+            {pieData.length > 0 ? (
                 <PieChart
                     series={[
                         {
-                            data: data?.pieChartData,
-                            innerRadius: 30,
-                            outerRadius: 90,
-                            paddingAngle: 1,
-                            cornerRadius: 1,
+                            data: pieData,
+                            innerRadius: 25,
+                            outerRadius: 100,
+                            paddingAngle: 2,
+                            cornerRadius: 4,
+                            highlightScope: { faded: 'global', highlighted: 'item' },
+                            faded: { innerRadius: 20, additionalRadius: -20 }
                         },
                     ]}
                     height={300}
+                    slotProps={{
+                        legend: {
+                            direction: "column",
+                            position: { vertical: "top", horizontal: "right" },
+                            labelStyle: { fontSize: "0.8rem" },
+                            padding: 0,
+                            itemMarkWidth: 10,
+                            itemMarkHeight: 10
+                        },
+                    }}
                 />
+            ) : (
+                <div className="no-data">No category data available</div>
             )}
         </div>
-
-
-        // <Card>
-        //     <Title>Weekly Calories Burned</Title>
-        //     {data?.pieChartData && (
-        //         <PieChart
-        //             series={[
-        //                 {
-        //                     data: data?.pieChartData,
-        //                     innerRadius: 30,
-        //                     outerRadius: 120,
-        //                     paddingAngle: 5,
-        //                     cornerRadius: 5,
-        //                 },
-        //             ]}
-        //             height={300}
-        //         />
-        //     )}
-        // </Card>
-
-
     );
 };
-
-
-
-const Card = styled.div`
-  flex: 1;
-  min-width: 280px;
-  padding: 24px;
-  border: 1px solid ${({ theme }) => theme.text_primary + 20};
-  border-radius: 14px;
-  box-shadow: 1px 6px 20px 0px ${({ theme }) => theme.primary + 15};
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  @media (max-width: 600px) {
-    padding: 16px;
-  }
-`;
-const Title = styled.div`
-  font-weight: 600;
-  font-size: 16px;
-  color: ${({ theme }) => theme.primary};
-  @media (max-width: 600px) {
-    font-size: 14px;
-  }
-`;
-
-
-
 
 
 export default CategoryChartCard;

@@ -18,13 +18,24 @@ const AddTrainerCard = ({ trainer, onDelete }) => {
                     </Avatar>
                 </div>
                 <div className="trainer-card-text">
-                    <h1 className="mb-1">{fullName}</h1>
-                    <p className="mb-0">{email}</p>
-                    <p className="mb-0">{phoneNumber}</p>
-                    <p className="mb-0">{experience} years</p>
+                    <h1 className="mb-1" style={{ fontWeight: "400", color: "red" }}>
+                        <span style={{ fontWeight: "600", color: "black" }}>Name: </span>{fullName}
+                    </h1>
+
+                    <p className="mb-0" style={{ fontWeight: "400" }}>
+                        <span style={{ fontWeight: "500", fontSize: "inherit" }}>Email: </span>{email}
+                    </p>
+
+                    <p className="mb-0" style={{ fontWeight: "400" }}>
+                        <span style={{ fontWeight: "500", fontSize: "inherit" }}>Contact: </span>{phoneNumber}
+                    </p>
+
+                    <p className="mb-0" style={{ fontWeight: "400" }}>
+                        <span style={{ fontWeight: "500", fontSize: "inherit" }}>Experirnce: </span>{experience} years
+                    </p>
                 </div>
             </div>
-            <Button variant="link" className="delete-btn" onClick={onDelete}>
+            <Button variant="link" className="delete-btn" onClick={() => onDelete(trainer.id)}>
                 <div className="delete-icon">
                     <i className="bi bi-trash-fill" aria-hidden="true"></i>
                 </div>

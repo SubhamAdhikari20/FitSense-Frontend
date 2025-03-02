@@ -204,7 +204,7 @@ const SignUpSection = () => {
                                 </FloatingLabel>
 
                                 {/* Mobile Number */}
-                                <Row>
+                                {/* <Row>
                                     <Col md={4}>
                                         <div className="country-code-wrapper  mb-3">
                                             <Dropdown1
@@ -219,7 +219,7 @@ const SignUpSection = () => {
 
                                     </Col>
 
-                                    <Col md={8}>
+                                    <Col md={8}> */}
                                         <FloatingLabel
                                             controlId="phoneNumber"
                                             label="Mobile Number"
@@ -232,8 +232,8 @@ const SignUpSection = () => {
                                                 onChange={(e) => setPhoneNumber(e.target.value)}
                                             />
                                         </FloatingLabel>
-                                    </Col>
-                                </Row>
+                                    {/* </Col>
+                                </Row> */}
 
                                 {/* Password */}
                                 <Row className="mb-3">

@@ -58,13 +58,13 @@ const AdminDashboardSidebar = ({ currentUser }) => {
 
                         {/* Nav Items (Desktop) */}
                         <Nav className="flex-column sidebar-nav">
-                            <Nav.Link as={Link} to="/trainers" className="nav-item-custom">
+                            <Nav.Link as={Link} to="/add-trainers" className="nav-item-custom">
                                 Trainers
                             </Nav.Link>
 
-                            <Nav.Link as={Link} to="/blogs" className="nav-item-custom">
+                            {/* <Nav.Link as={Link} to="/blogs" className="nav-item-custom">
                                 Blogs
-                            </Nav.Link>
+                            </Nav.Link> */}
                         </Nav>
 
                         {/* Bottom Section: Avatar & Popup Menu */}

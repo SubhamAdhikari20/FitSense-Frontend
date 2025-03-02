@@ -58,17 +58,17 @@ const TrainerDashboardSidebar = ({ currentUser }) => {
 
                         {/* Nav Items (Desktop) */}
                         <Nav className="flex-column sidebar-nav">
-                            <Nav.Link as={Link} to="/dashboard" className="nav-item-custom">
+                            {/* <Nav.Link as={Link} to="/dashboard" className="nav-item-custom">
                                 Dashboard
-                            </Nav.Link>
+                            </Nav.Link> */}
 
-                            <Nav.Link as={Link} to="/users" className="nav-item-custom">
+                            <Nav.Link as={Link} to="/trainees" className="nav-item-custom">
                                 Trainees
                             </Nav.Link>
 
-                            <Nav.Link as={Link} to="/blogs" className="nav-item-custom">
+                            {/* <Nav.Link as={Link} to="/blogs" className="nav-item-custom">
                                 Blogs
-                            </Nav.Link>
+                            </Nav.Link> */}
                         </Nav>
 
                         {/* Bottom Section: Avatar & Popup Menu */}

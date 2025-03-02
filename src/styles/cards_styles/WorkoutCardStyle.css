@@ -25,7 +25,7 @@
 }
 
 .workout-name {
-    font-size: 20px;
+    font-size: 15px;
     color: var(--text-primary);
     font-weight: 600;
 }
@@ -52,6 +52,30 @@
     gap: 6px;
 }
 
+
+/* Wrapper for category code input */
+.category-wrapper {
+    padding: 3px 15px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    /* height: calc(3.5rem + calc(var(--bs-border-width) * 2));
+    min-height: calc(3.5rem + calc(var(--bs-border-width) * 2)); */
+    
+}
+
+.category-wrapper .category-dropdown {
+    font-size: 0.9rem;
+    width: 100%;
+    
+}
+
+.dropdown{
+    width: 100%;
+}
 
 
 @media (max-width: 600px) {

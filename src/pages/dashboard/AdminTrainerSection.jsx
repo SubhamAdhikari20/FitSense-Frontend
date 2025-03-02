@@ -6,7 +6,7 @@ import AddTrainerCard from './../../components/cards/AddTrainerCard.jsx';
 import { registerTrainer, getAllTrainers, deleteTrainer } from './../../apis/Api.js';
 import { useDispatch } from "react-redux";
 
-const AdminTrainerSection = () => {
+const AdminTrainerSection = ({ currentUser }) => {
     // fetchAllTrainers();
     const dispatch = useDispatch();
 
@@ -110,12 +110,14 @@ const AdminTrainerSection = () => {
         try {
             const response = await getAllTrainers();
             // Assuming your backend returns { getAllTrainers: [...] }
-            if (response.data && response.data.getAllTrainers) {
-                setTrainers(response.data.getAllTrainers);
-            } else {
+            if (response?.data?.trainers || []) {
+                setTrainers(response.data.trainers);
+            } 
+            else {
                 setTrainers([]);
             }
-        } catch (error) {
+        } 
+        catch (error) {
             console.error("Error fetching trainers:", error);
             alert("Error fetching trainers. Please try again later.");
         }
@@ -158,9 +160,9 @@ const AdminTrainerSection = () => {
     };
 
     // Handle account Delete a trainer from the list
-    const handleDeleteTrainer = async (trainerEmail) => {
+    const handleDeleteTrainer = async (trainerId) => {
         try {
-            const response = await deleteTrainer({ email: trainerEmail });
+            const response = await deleteTrainer({ trainerId });
             if (response.data && response.data.message) {
                 alert(response.data.message);
                 fetchAllTrainers();
@@ -174,6 +176,18 @@ const AdminTrainerSection = () => {
         setTrainers(filtered);
     };
 
+    // Add form reset function
+    const resetForm = () => {
+        setFullName("");
+        setEmail("");
+        setPhoneNumber("");
+        setExperience("");
+        setPassword("");
+        setConfirmPassword("");
+        setShowTrainerPassword(false);
+        setShowTrainerConfirmPassword(false);
+
+    };
 
     return (
         <section className="trainer-section">
@@ -197,7 +211,7 @@ const AdminTrainerSection = () => {
                             <Form.Group className="mb-3" controlId="fullName">
                                 <Form.Control
                                     type="text"
-                                    placeholder="Name"
+                                    placeholder="FullName"
                                     value={fullName}
                                     autoComplete="off"
                                     onChange={(e) => setFullName(e.target.value)}
@@ -299,10 +313,16 @@ const AdminTrainerSection = () => {
                                     </Button>
                                 </Col>
                             </Row>
+                            <div style={{ display: "flex", gap: "15px" }}>
 
-                            <Button className="add-trainer-btn " onClick={handleAddTrainer} disabled={buttonDisabled}>
-                                {loading ? "Adding Trainer..." : "Add Trainer"}
-                            </Button>
+                                <Button className="add-trainer-btn " onClick={handleAddTrainer} disabled={buttonDisabled}>
+                                    {loading ? "Adding Trainer..." : "Add Trainer"}
+                                </Button>
+
+                                <Button className="add-trainer-btn" style={{ backgroundColor: "aqua" }} disabled={buttonDisabled} onClick={resetForm}>
+                                    Clear
+                                </Button>
+                            </div>
                         </Form>
                     </Col>
 
@@ -311,9 +331,9 @@ const AdminTrainerSection = () => {
                         {/* List of Trainer Cards */}
                         {trainers.map((trainer) => (
                             <AddTrainerCard
-                                key={trainer.email}
+                                key={trainer.id}
                                 trainer={trainer}
-                                onDelete={() => handleDeleteTrainer(trainer.email)}
+                                onDelete={handleDeleteTrainer}
                             />
                         ))}
                     </Col>

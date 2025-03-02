@@ -1,0 +1,204 @@
+.user-profile-section {
+    padding: 10px 15px;
+}
+
+.profile-container {
+    background-color: #cfe9dc;
+    min-height: 82vh;
+    border-radius: 15px;
+    padding: 2rem;
+    overflow: hidden;
+}
+
+.profile-container-row{
+    display: flex;
+    justify-content: center;
+}
+
+.profile-container-row-col1{
+    max-width: 30%;
+    display: flex;
+    align-items: center;
+}
+
+
+.profile-container-row-col2{
+    max-width: 60%;
+}
+
+.profile-container-row-col3{
+    max-width: 20%;
+    display: flex;
+    align-items: end;
+}
+
+
+.profile-title {
+    color: #333;
+    display: inline-block;
+    font-weight: 500;
+    font-size: 35px;
+    text-transform: none;
+    text-decoration: none;
+}
+
+.profile-image-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.profile-image-container{
+    border-radius: 50%;
+  border: 2px solid rgb(205, 205, 210);
+}
+
+.image-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.change-picture-button {
+    background-color: #88929B;
+    color: white;
+    padding: 2px 5px;
+    font-size: 15px;
+    font-weight: 400;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.change-picture-button:hover {
+    background-color: rgb(139, 134, 134);
+}
+
+.remove-btn{
+    padding: 2px 5px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.upload-image-button {
+    background-color: #ff6f61;
+    color: white;
+    padding: 2px 5px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.upload-image-button:hover {
+    background-color: #ff5a4e;
+}
+
+.profile-form-wrapper {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.update-button {
+    background-color: #ff6f61;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    flex: 1;
+}
+
+.update-button:hover {
+    background-color: #ff5a4e;
+}
+
+.clear-button {
+    background-color: #00cccc;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    flex: 1;
+}
+
+.clear-button:hover {
+    background-color: #00b3b3;
+}
+
+.delete-account-section {
+    margin-top: 2rem;
+    text-align: center;
+    width: inherit;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    width: 100%;
+}
+
+.delete-button:hover {
+    background-color: #bb2d3b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 1rem;
+    }
+
+    .profile-form-wrapper {
+        padding: 1rem;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+    }
+
+    .update-button,
+    .clear-button {
+        width: 100%;
+    }
+
+    .image-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .upload-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .delete-button {
+        padding: 0.75rem 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .profile-title {
+        font-size: 1.5rem;
+    }
+
+    Form.Control,
+    Form.Select {
+        font-size: 14px;
+    }
+}

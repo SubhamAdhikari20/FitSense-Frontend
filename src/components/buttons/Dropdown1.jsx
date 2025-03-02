@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Form from "react-bootstrap/Form";
 
-const Dropdown1 = ({ options, onSelect, children, className = '', textClassName = '' }) => {
+const Dropdown1 = ({ options, onSelect, selectedValue, children, className = '', textClassName = '' }) => {
     const [selectedLabel, setSelectedLabel] = useState(children || "Select");
     const [isOpen, setIsOpen] = useState(false);
     const [highlightedIndex, setHighlightedIndex] = useState(-1);
@@ -10,8 +10,15 @@ const Dropdown1 = ({ options, onSelect, children, className = '', textClassName 
     const dropdownRef = useRef(null);
     const menuRef = useRef(null);
 
+    // Update internal state when the controlled prop changes
+    useEffect(() => {
+        if (selectedValue) {
+            setSelectedLabel(selectedValue);
+        }
+    }, [selectedValue]);
+
     // Filter options based on search term
-    const filteredOptions = options.filter(option => 
+    const filteredOptions = options.filter(option =>
         option.label.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
@@ -27,19 +34,20 @@ const Dropdown1 = ({ options, onSelect, children, className = '', textClassName 
         setIsOpen(false);
     };
 
+
     const handleKeyDown = (e) => {
         if (!isOpen) return;
 
-        switch(e.key) {
+        switch (e.key) {
             case 'ArrowDown':
                 e.preventDefault();
-                setHighlightedIndex((prev) => 
+                setHighlightedIndex((prev) =>
                     prev < filteredOptions.length - 1 ? prev + 1 : 0
                 );
                 break;
             case 'ArrowUp':
                 e.preventDefault();
-                setHighlightedIndex((prev) => 
+                setHighlightedIndex((prev) =>
                     prev > 0 ? prev - 1 : filteredOptions.length - 1
                 );
                 break;
@@ -53,6 +61,8 @@ const Dropdown1 = ({ options, onSelect, children, className = '', textClassName 
                 break;
         }
     };
+
+
 
     useEffect(() => {
         document.addEventListener('keydown', handleKeyDown);
@@ -70,8 +80,8 @@ const Dropdown1 = ({ options, onSelect, children, className = '', textClassName 
                 onClick(e);
             }}
             style={{
-                cursor: 'pointer', 
-                display: "flex", 
+                cursor: 'pointer',
+                display: "flex",
                 justifyContent: "center",
                 alignItems: "center"
             }}
@@ -108,13 +118,13 @@ const Dropdown1 = ({ options, onSelect, children, className = '', textClassName 
                     />
                     <ul className="list-unstyled">
                         {filteredOptions.map((option, index) => (
-                            <Dropdown.Item 
-                                key={option.value} 
+                            <Dropdown.Item
+                                key={option.value}
                                 eventKey={option.value}
                                 active={index === highlightedIndex}
                                 style={{
-                                    backgroundColor: index === highlightedIndex 
-                                        ? 'aqua' 
+                                    backgroundColor: index === highlightedIndex
+                                        ? 'aqua'
                                         : 'transparent'
                                 }}
                             >
