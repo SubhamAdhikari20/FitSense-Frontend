@@ -1,0 +1,52 @@
+/* BMICardStyle.css */
+.dashboard-card {
+    margin: 15px;
+    padding: 24px;
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    box-shadow: 1px 6px 20px 0px var(--card-box-shadow);
+    transition: all 0.3s ease;
+    min-width: 350px;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-card .card-title {
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--primary);
+}
+
+.bmi-value {
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.bmi-category {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+/* Responsive styles for smaller devices */
+@media screen and (max-width: 600px) {
+    .dashboard-card {
+        margin: 10px;
+        padding: 16px;
+        min-width: 100%;  /* Allow the card to take full width */
+    }
+    .dashboard-card .card-title {
+        font-size: 14px;
+    }
+    .bmi-value {
+        font-size: 22px;
+    }
+    .bmi-category {
+        font-size: 14px;
+    }
+}

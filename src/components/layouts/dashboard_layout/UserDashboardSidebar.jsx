@@ -7,8 +7,7 @@ import "./../../../styles/dashboard_styles/UserSidebarDashboardStyle.css";
 import { MenuRounded, CloseRounded } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
 import { logout } from "./../../../redux/reducers/userSlice.js";
-import MyProfile from './../../../pages/dashboard/MyProfile.jsx';
-import UserProfile from './../../../pages/dashboard/UserProfile.jsx';
+
 
 const UserDashboardSidebar = ({ currentUser }) => {
     const dispatch = useDispatch();
@@ -49,7 +48,7 @@ const UserDashboardSidebar = ({ currentUser }) => {
                 <Container className="sidebar-container">
                     {/* Logo / Brand */}
                     <Navbar.Brand className="sidebar-brand">
-                        <Link to="/dashboard">
+                        <Link to="/user/dashboard">
                             <img src={Logo} alt="Logo" className="sidebar-logo" />
                         </Link>
                     </Navbar.Brand>
@@ -61,21 +60,17 @@ const UserDashboardSidebar = ({ currentUser }) => {
 
                         {/* Nav Items (Desktop) */}
                         <Nav className="flex-column sidebar-nav">
-                            <Nav.Link as={Link} to="/dashboard" className="nav-item-custom">
+                            <Nav.Link as={Link} to="/user/dashboard" className="nav-item-custom">
                                 Dashboard
                             </Nav.Link>
 
-                            <Nav.Link as={Link} to="/trainers" className="nav-item-custom">
+                            <Nav.Link as={Link} to="/user/get-trainers" className="nav-item-custom">
                                 Get a Trainer
                             </Nav.Link>
 
-                            <Nav.Link as={Link} to="/workouts" className="nav-item-custom">
+                            <Nav.Link as={Link} to="/user/workouts" className="nav-item-custom">
                                 Workouts
                             </Nav.Link>
-
-                            {/* <Nav.Link as={Link} to="/blogs" className="nav-item-custom">
-                                Blogs
-                            </Nav.Link> */}
                         </Nav>
 
                         {/* Bottom Section: Avatar & Popup Menu */}
@@ -178,7 +173,7 @@ const UserMenu = ({ currentUser, onLogoutClick }) => {
 
     // handle my proflie navigation
     const handleMyProfile = () => {
-        navigate("/my_profile");
+        navigate("/user/my_profile");
     };
 
     return (
@@ -203,7 +198,7 @@ const UserMenu = ({ currentUser, onLogoutClick }) => {
             )}
             {/* <UserProfile /> */}
 
-            <MyProfile show={myProfileShow} handleClose={() => setmyProfileShow(false)} currentUser={currentUser} />
+            {/* <MyProfile show={myProfileShow} handleClose={() => setmyProfileShow(false)} currentUser={currentUser} /> */}
         </div>
     );
 };

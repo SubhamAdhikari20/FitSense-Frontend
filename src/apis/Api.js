@@ -13,17 +13,26 @@ const Api = axios.create({
 
 // General User
 export const registerUser = async (data) => Api.post("/user/register_user", data);
+
 export const loginUser = async (data) => Api.post("/user/login_user", data);
 export const resetPasswordUser = async (data) => Api.post("/user/forgot_password", data);
-export const uploadUserProfilePicture = async (formData) =>
-    Api.post("/user/profile_picture", formData, {
+
+export const uploadUserProfilePicture = async (formData) =>{
+    return Api.put("/user/profile_picture", formData, {
         headers: { "Content-Type": "multipart/form-data" },
     });
-// export const deleteUser = async (data) =>
-//     Api.delete("/user/delete_user", {
-//         data,
-//         headers: { Authorization: `Bearer ${token}` },
-//     });
+}
+
+export const updateProfileDetails = async (data) => {
+    const token = localStorage.getItem("fitsense-app-token");
+    if (!token) {
+        throw new Error("No authentication token found");
+    }
+    return Api.put(`/user/update_profile_details/${data.id}`, data, {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+};
+    
 
 export const deleteUser = async (data) => {
     const token = localStorage.getItem("fitsense-app-token");
@@ -144,21 +153,35 @@ export const registerTrainer = async (data) => Api.post("/trainer/register_train
 export const loginTrainer = async (data) => Api.post("/trainer/login_trainer", data);
 export const resetPasswordTrainer = async (data) => Api.post("/trainer/forgot_password", data);
 
-export const uploadTrainerProfilePicture = async (formData) =>
-    Api.post("/trainer/profile_picture", formData, {
+
+export const uploadTrainerProfilePicture = async (formData) =>{
+    return Api.put("/trainer/profile_picture", formData, {
         headers: { "Content-Type": "multipart/form-data" },
     });
+}
+
+export const updateTrainerProfileDetails = async (data) => {
+    const token = localStorage.getItem("fitsense-app-token");
+    if (!token) {
+        throw new Error("No authentication token found");
+    }
+    return Api.put(`/trainer/update_profile_details/${data.id}`, data, {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+};
+    
 
 export const deleteTrainer = async (data) => {
     const token = localStorage.getItem("fitsense-app-token");
     if (!token) {
         throw new Error("No authentication token found");
     }
-    return Api.delete(`/trainer/delete_trainer/${data.trainerId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-        params: { data }
+    return Api.delete("/trainer/delete_trainer", {
+        data,
+        headers: { Authorization: `Bearer ${token}` }
     });
 };
+
 
 export const getTrainerByEmail = async (data) => Api.get("/trainer/view_trainer_by_email", { params: data });
 
@@ -178,10 +201,23 @@ export const getAllTrainers = async () => {
 export const loginAdmin = async (data) => Api.post("/admin/login_admin", data);
 export const resetPasswordAdmin = async (data) => Api.post("/admin/forgot_password", data);
 
-export const uploadAdminProfilePicture = async (formData) =>
-    Api.post("/admin/profile_picture", formData, {
+
+export const uploadAdminProfilePicture = async (formData) =>{
+    return Api.put("/admin/profile_picture", formData, {
         headers: { "Content-Type": "multipart/form-data" },
     });
+}
+
+export const updateAdminProfileDetails = async (data) => {
+    const token = localStorage.getItem("fitsense-app-token");
+    if (!token) {
+        throw new Error("No authentication token found");
+    }
+    return Api.put(`/admin/update_admin_profile_details/${data.id}`, data, {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+};
+    
 
 export const deleteAdmin = async (data) => {
     const token = localStorage.getItem("fitsense-app-token");
@@ -190,9 +226,11 @@ export const deleteAdmin = async (data) => {
     }
     return Api.delete("/admin/delete_admin", {
         data,
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` }
     });
 };
+
+
 
 
 export const getAdminByEmail = async (data) =>

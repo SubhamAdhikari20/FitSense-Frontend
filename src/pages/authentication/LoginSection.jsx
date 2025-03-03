@@ -64,7 +64,7 @@ const LoginSection = () => {
                     const res = await loginUser({ email, password });
                     dispatch(loginSuccess(res.data));
                     alert(res.data.message || "Logged in successfully as user!");
-                    navigate("/dashboard");
+                    navigate("/user/dashboard");
                     return;
                 }
 
@@ -82,7 +82,7 @@ const LoginSection = () => {
                     const res = await loginTrainer({ email, password });
                     dispatch(loginSuccess(res.data));
                     alert(res.data.message || "Logged in successfully as trainer!");
-                    navigate("/dashboard");
+                    navigate("/trainer/dashboard");
                     return;
                 }
 
@@ -100,7 +100,7 @@ const LoginSection = () => {
                     const res = await loginAdmin({ email, password });
                     dispatch(loginSuccess(res.data));
                     alert(res.data.message || "Logged in successfully as admin!");
-                    navigate("/dashboard");
+                    navigate("/admin/dashboard");
                     return;
                 }
 

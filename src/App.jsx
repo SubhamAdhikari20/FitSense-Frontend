@@ -9,6 +9,8 @@ import SignUp from "./pages/authentication/SignUp";
 import Login from "./pages/authentication/Login";
 import ForgotPassword from "./pages/authentication/ForgotPassword.jsx";
 import Dashboard from './pages/dashboard/Dashboard.jsx';
+import TrainerDashboard from './pages/dashboard/TrainerDashboard.jsx';
+import AdminDashboard from './pages/dashboard/AdminDashboard.jsx';
 import Workouts from "./pages/dashboard/Workouts.jsx";
 import UserDashboardSidebar from './components/layouts/dashboard_layout/UserDashboardSidebar.jsx';
 import TrainerDashboardSidebar from './components/layouts/dashboard_layout/TrainerDashboardSidebar.jsx';
@@ -16,6 +18,8 @@ import AdminDashboardSidebar from './components/layouts/dashboard_layout/AdminDa
 import TrainerTrainee from './pages/dashboard/TrainerTrainee.jsx';
 import AdminTrainer from './pages/dashboard/AdminTrainer.jsx';
 import UserProfile from './pages/dashboard/UserProfile.jsx';
+import TrainerProfile from './pages/dashboard/TrainerProfile.jsx';
+import AdminProfile from "./pages/dashboard/AdminProfile.jsx";
 
 function App() {
     const { currentUser } = useSelector((state) => state.user);
@@ -28,19 +32,21 @@ function App() {
                         <div className="dashboard-root">
                             <UserDashboardSidebar currentUser={currentUser} />
                             <Routes>
-                                <Route path="/" element={<Navigate to="/dashboard" />} />
-                                <Route path="/dashboard" element={<Dashboard />} />
-                                <Route path="/workouts" element={<Workouts currentUser={currentUser}/>} />
-                                <Route path="/trainers" element={<AdminTrainer />} />
-                                <Route path="/my_profile" element={<UserProfile currentUser={currentUser}/>} />
+                                <Route path="/" element={<Navigate to="/user/dashboard" />} />
+                                <Route path="/user/dashboard" element={<Dashboard currentUser={currentUser}/>} />
+                                <Route path="/user/workouts" element={<Workouts currentUser={currentUser} />} />
+                                {/* <Route path="/user/get-trainers" element={<AdminTrainer />} /> */}
+                                <Route path="/user/my_profile" element={<UserProfile currentUser={currentUser} />} />
                             </Routes>
                         </div>
                     ) : currentUser.role === "trainer" ? (
                         <div className="dashboard-root">
                             <TrainerDashboardSidebar currentUser={currentUser} />
                             <Routes>
-                                <Route path="/" element={<Navigate to="/trainees" />} />
-                                <Route path="/trainees" element={<TrainerTrainee />} />
+                                <Route path="/" element={<Navigate to="/trainer/dashboard" />} />
+                                <Route path="/trainer/dashboard" element={<TrainerDashboard currentUser={currentUser}/>} />
+                                <Route path="/trainer/trainees" element={<TrainerTrainee />} />
+                                <Route path="/trainer/my_profile" element={<TrainerProfile currentUser={currentUser} />} />
                             </Routes>
                         </div>
                     ) : (
@@ -48,8 +54,10 @@ function App() {
                         <div className="dashboard-root">
                             <AdminDashboardSidebar currentUser={currentUser} />
                             <Routes>
-                                <Route path="/" element={<Navigate to="/add-trainers" />} />
-                                <Route path="/add-trainers" element={<AdminTrainer />} />
+                                <Route path="/" element={<Navigate to="/admin/dashboard" />} />
+                                <Route path="/admin/dashboard" element={<AdminDashboard currentUser={currentUser}/>} />
+                                <Route path="/admin/add-trainers" element={<AdminTrainer />} />
+                                <Route path="/admin/my_profile" element={<AdminProfile currentUser={currentUser} />} />
                             </Routes>
                         </div>
                     )

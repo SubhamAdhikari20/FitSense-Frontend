@@ -4,11 +4,11 @@ import { Avatar } from '@mui/material';
 import './../../styles/dashboard_styles/UserProfileSectionStyle.css';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { uploadUserProfilePicture, deleteUser, updateProfileDetails } from './../../apis/Api.js';
+import { uploadAdminProfilePicture, deleteAdmin, updateAdminProfileDetails } from './../../apis/Api.js';
 import { updateProfilePictureSuccess, logout, deleteUserSuccess, updateUserDetails } from './../../redux/reducers/userSlice.js';
 
 
-const UserProfileSection = ({ currentUser }) => {
+const AdminProfileSection = ({ currentUser }) => {
     // Form state
     const [fullName, setFullName] = useState(currentUser?.fullName || "");
     const [email, setEmail] = useState(currentUser?.email || "");
@@ -75,14 +75,14 @@ const UserProfileSection = ({ currentUser }) => {
                 return;
             }
             // Call your API to upload the image (Cloudinary will return a URL)
-            const response = await uploadUserProfilePicture(uploadData);
+            const response = await uploadAdminProfilePicture(uploadData);
             console.log("Upload response:", response.data);
 
             if (response.data && response.data.profilePicture) {
                 // Notify parent component to update the user's profile picture in state
                 dispatch(updateProfilePictureSuccess(response.data.profilePicture));
                 setSelectedFile(null);
-                alert('Profile picture updated successfully!');
+                alert('Adminm Profile picture updated successfully!');
             }
         }
         catch (error) {
@@ -176,7 +176,7 @@ const UserProfileSection = ({ currentUser }) => {
                 if (!window.confirm("Are you sure you want to update your profile details?")) {
                     return;
                 }
-                const response = await updateProfileDetails({
+                const response = await updateAdminProfileDetails({
                     id: currentUser.id,
                     fullName,
                     email,
@@ -192,7 +192,7 @@ const UserProfileSection = ({ currentUser }) => {
                     dispatch(updateUserDetails(response.data.user));
                 }
 
-                alert(response.data.message || "Profile Details updated successfully!");
+                alert(response.data.message || "Admin Profile Details updated successfully!");
             }
             catch (error) {
                 console.error("Operation error:", error);
@@ -242,7 +242,7 @@ const UserProfileSection = ({ currentUser }) => {
     // Handle account deletion
     const handleDeleteAccount = async () => {
         try {
-            const response = await deleteUser({ id: currentUser.id });
+            const response = await deleteAdmin({ id: currentUser.id });
             console.log("Delete response:", response.data);
             if (response.data && response.data.message) {
                 alert(response.data.message);
@@ -495,7 +495,7 @@ const UserProfileSection = ({ currentUser }) => {
     );
 };
 
-export default UserProfileSection;
+export default AdminProfileSection;
 
 
 // ConfirmDeleteModel

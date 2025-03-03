@@ -4,14 +4,15 @@ import { Avatar } from '@mui/material';
 import './../../styles/dashboard_styles/UserProfileSectionStyle.css';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { uploadUserProfilePicture, deleteUser, updateProfileDetails } from './../../apis/Api.js';
+import { uploadTrainerProfilePicture, deleteTrainer, updateTrainerProfileDetails } from './../../apis/Api.js';
 import { updateProfilePictureSuccess, logout, deleteUserSuccess, updateUserDetails } from './../../redux/reducers/userSlice.js';
 
 
-const UserProfileSection = ({ currentUser }) => {
+const TrainerProfileSection = ({ currentUser }) => {
     // Form state
     const [fullName, setFullName] = useState(currentUser?.fullName || "");
     const [email, setEmail] = useState(currentUser?.email || "");
+    const [experience, setExperience] = useState(currentUser?.experience || "");
     const [phoneNumber, setPhoneNumber] = useState(currentUser?.phone || "");
     const [gender, setGender] = useState(currentUser?.gender || "");
     const [age, setAge] = useState(currentUser?.age || "");
@@ -65,17 +66,16 @@ const UserProfileSection = ({ currentUser }) => {
             return;
         }
 
-
         const uploadData = new FormData();
         uploadData.append('profilePicture', selectedFile);
         uploadData.append('id', currentUser.id);
 
         try {
+            // Call your API to upload the image (Cloudinary will return a URL)
             if (!window.confirm("Are you sure you want to upload your profile picture?")) {
                 return;
             }
-            // Call your API to upload the image (Cloudinary will return a URL)
-            const response = await uploadUserProfilePicture(uploadData);
+            const response = await uploadTrainerProfilePicture(uploadData);
             console.log("Upload response:", response.data);
 
             if (response.data && response.data.profilePicture) {
@@ -167,20 +167,23 @@ const UserProfileSection = ({ currentUser }) => {
     // Handle Update Details
     const handleUpdateProfileDetails = async (e) => {
         e.preventDefault();
+        // Prompt the user to confirm update
+        
         setLoading(true);
         setButtonDisabled(true);
 
         if (validateInputs()) {
             try {
-                // Prompt the user to confirm update
                 if (!window.confirm("Are you sure you want to update your profile details?")) {
                     return;
                 }
-                const response = await updateProfileDetails({
+                
+                const response = await updateTrainerProfileDetails({
                     id: currentUser.id,
                     fullName,
                     email,
                     phoneNumber,
+                    experience,
                     gender,
                     age,
                     weight,
@@ -242,7 +245,7 @@ const UserProfileSection = ({ currentUser }) => {
     // Handle account deletion
     const handleDeleteAccount = async () => {
         try {
-            const response = await deleteUser({ id: currentUser.id });
+            const response = await deleteTrainer({ id: currentUser.id });
             console.log("Delete response:", response.data);
             if (response.data && response.data.message) {
                 alert(response.data.message);
@@ -334,18 +337,23 @@ const UserProfileSection = ({ currentUser }) => {
                                     onChange={(e) => setFullName(e.target.value)}
                                 />
                             </Form.Group>
+                            <Row className="mb-3">
+                                <Col >
+                                    <Form.Group className="mb-0" controlId="email">
+                                        <Form.Label>
+                                            Email
+                                        </Form.Label>
+                                        <Form.Control
+                                            type="email"
+                                            placeholder="Enter your email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                        />
+                                    </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="email">
-                                <Form.Label>
-                                    Email
-                                </Form.Label>
-                                <Form.Control
-                                    type="email"
-                                    placeholder="Enter your email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                />
-                            </Form.Group>
+                                </Col>
+                            </Row>
+
                             <Row className="mb-3">
                                 <Col md={6}>
                                     <Form.Group className="mb-0" controlId="phoneNumber">
@@ -362,6 +370,22 @@ const UserProfileSection = ({ currentUser }) => {
                                     </Form.Group>
                                 </Col>
                                 <Col md={6}>
+                                    <Form.Group className="mb-0" controlId="experience">
+                                        <Form.Label>
+                                            Experience
+                                        </Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Experience"
+                                            value={experience}
+                                            onChange={(e) => setExperience(e.target.value)}
+                                        />
+                                    </Form.Group>
+
+                                </Col>
+                            </Row>
+                            <Row className="mb-3">
+                                <Col md={6}>
                                     <Form.Group controlId="gender">
                                         <Form.Label>
                                             Gender
@@ -376,8 +400,6 @@ const UserProfileSection = ({ currentUser }) => {
                                         </Form.Select>
                                     </Form.Group>
                                 </Col>
-                            </Row>
-                            <Row className="mb-3">
                                 <Col md={6}>
                                     <Form.Group controlId="age">
                                         <Form.Label>
@@ -393,7 +415,11 @@ const UserProfileSection = ({ currentUser }) => {
 
                                     </Form.Group>
                                 </Col>
-                                <Col md={6}>
+
+                            </Row>
+
+                            <Row className="mb-4">
+                                <Col md={4}>
                                     <Form.Group controlId="weight">
                                         <Form.Label>
                                             Weight
@@ -407,11 +433,7 @@ const UserProfileSection = ({ currentUser }) => {
                                         />
                                     </Form.Group>
                                 </Col>
-                            </Row>
-
-                            <Row className="mb-4">
-
-                                <Col md={6}>
+                                <Col md={4}>
                                     <Form.Group controlId="height">
                                         <Form.Label>
                                             Height (ft)
@@ -426,7 +448,7 @@ const UserProfileSection = ({ currentUser }) => {
                                         />
                                     </Form.Group>
                                 </Col>
-                                <Col md={6}>
+                                <Col md={4}>
                                     <Form.Group controlId="height">
                                         <Form.Label>
                                             Height (in)
@@ -495,7 +517,7 @@ const UserProfileSection = ({ currentUser }) => {
     );
 };
 
-export default UserProfileSection;
+export default TrainerProfileSection;
 
 
 // ConfirmDeleteModel

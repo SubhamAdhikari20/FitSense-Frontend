@@ -7,13 +7,13 @@ import CountsCard from './../../components/cards/CountsCard.jsx';
 import WeeklyStatCard from "../../components/cards/WeeklyStatCard.jsx";
 import CategoryChartCard from "../../components/cards/CategoryChartCard.jsx";
 import LineGraphCard from "../../components/cards/LineGraphCard.jsx";
-import AddWorkoutCard from "../../components/cards/AddWorkoutCard.jsx";
+import BMICard from "../../components/cards/BMICard.jsx";
 import WorkoutCard from "../../components/cards/WorkoutCard.jsx";
 import { getWorkouts, toggleWorkoutCompletion, getLifeTimeWorkouts, getWeeklyStats, getTodayWorkouts } from './../../apis/Api.js';
 import { getCurrentWeekRange, getAdjacentWeek } from './../../utils/dateHelpers.js';
 
 
-const DashboardSection = () => {
+const DashboardSection = ({currentUser}) => {
     const [stats, setStats] = useState({
         today: {
             totalCalories: 0,
@@ -284,7 +284,7 @@ const DashboardSection = () => {
                                 />
                             ))}
                             {/* <AddWorkoutCard/> */}
-
+                            <BMICard currentUser={currentUser}/>
                         </Col>
 
                     </Row>

@@ -7,7 +7,7 @@ import "./../../../styles/dashboard_styles/UserSidebarDashboardStyle.css";
 import { MenuRounded, CloseRounded } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
 import { logout } from "./../../../redux/reducers/userSlice.js";
-import TrainerProfile from './../../../pages/dashboard/TrainerProfile.jsx';
+
 
 const TrainerDashboardSidebar = ({ currentUser }) => {
     const dispatch = useDispatch();
@@ -46,7 +46,7 @@ const TrainerDashboardSidebar = ({ currentUser }) => {
                 <Container className="sidebar-container">
                     {/* Logo / Brand */}
                     <Navbar.Brand className="sidebar-brand">
-                        <Link to="/dashboard">
+                        <Link to="/trainer/dashboard">
                             <img src={Logo} alt="Logo" className="sidebar-logo" />
                         </Link>
                     </Navbar.Brand>
@@ -58,17 +58,13 @@ const TrainerDashboardSidebar = ({ currentUser }) => {
 
                         {/* Nav Items (Desktop) */}
                         <Nav className="flex-column sidebar-nav">
-                            {/* <Nav.Link as={Link} to="/dashboard" className="nav-item-custom">
+                            <Nav.Link as={Link} to="/trainer/dashboard" className="nav-item-custom">
                                 Dashboard
-                            </Nav.Link> */}
-
-                            <Nav.Link as={Link} to="/trainees" className="nav-item-custom">
-                                Trainees
                             </Nav.Link>
 
-                            {/* <Nav.Link as={Link} to="/blogs" className="nav-item-custom">
-                                Blogs
-                            </Nav.Link> */}
+                            <Nav.Link as={Link} to="/trainer/trainees" className="nav-item-custom">
+                                Trainees
+                            </Nav.Link>
                         </Nav>
 
                         {/* Bottom Section: Avatar & Popup Menu */}
@@ -149,6 +145,7 @@ const LogoutModal = ({ show, onClose, onLogout }) => {
 
 /* USER MENU COMPONENT (Avatar Popup)*/
 const UserMenu = ({ currentUser, onLogoutClick }) => {
+    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const menuRef = useRef(null);
 
@@ -169,6 +166,11 @@ const UserMenu = ({ currentUser, onLogoutClick }) => {
         };
     }, []);
 
+    // handle my proflie navigation
+    const handleMyProfile = () => {
+        navigate("/trainer/my_profile");
+    };
+
     return (
         <div className="user-menu" ref={menuRef}>
             <Avatar
@@ -181,7 +183,7 @@ const UserMenu = ({ currentUser, onLogoutClick }) => {
 
             {open && (
                 <div className="profile-popup">
-                    <div className="popup-link" onClick={() => setmyProfileShow(true)}>
+                    <div className="popup-link" onClick={handleMyProfile}>
                         My Profile
                     </div>
                     <div className="popup-link logout-btn" onClick={onLogoutClick}>
@@ -189,7 +191,6 @@ const UserMenu = ({ currentUser, onLogoutClick }) => {
                     </div>
                 </div>
             )}
-            <TrainerProfile show={myProfileShow} handleClose={() => setmyProfileShow(false)} currentUser={currentUser} />
         </div>
     );
 };

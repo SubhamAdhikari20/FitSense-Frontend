@@ -4,11 +4,11 @@ import LayoutDashboard from "../../components/layouts/dashboard_layout/LayoutDas
 import DashboardSection from "./DashboardSection";
 
 
-const Dashboard = () => {
+const Dashboard = ({ currentUser }) => {
     return (
         <>
             <LayoutDashboard>
-                <DashboardSection/>
+                <DashboardSection currentUser={currentUser} />
             </LayoutDashboard>
         </>
     );

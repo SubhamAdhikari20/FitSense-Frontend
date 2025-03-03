@@ -46,7 +46,7 @@ const AdminDashboardSidebar = ({ currentUser }) => {
                 <Container className="sidebar-container">
                     {/* Logo / Brand */}
                     <Navbar.Brand className="sidebar-brand">
-                        <Link to="/dashboard">
+                        <Link to="/admin/dashboard">
                             <img src={Logo} alt="Logo" className="sidebar-logo" />
                         </Link>
                     </Navbar.Brand>
@@ -58,13 +58,14 @@ const AdminDashboardSidebar = ({ currentUser }) => {
 
                         {/* Nav Items (Desktop) */}
                         <Nav className="flex-column sidebar-nav">
-                            <Nav.Link as={Link} to="/add-trainers" className="nav-item-custom">
+                            <Nav.Link as={Link} to="/admin/dashboard" className="nav-item-custom">
+                                Dashboard
+                            </Nav.Link>
+
+                            <Nav.Link as={Link} to="/admin/add-trainers" className="nav-item-custom">
                                 Trainers
                             </Nav.Link>
 
-                            {/* <Nav.Link as={Link} to="/blogs" className="nav-item-custom">
-                                Blogs
-                            </Nav.Link> */}
                         </Nav>
 
                         {/* Bottom Section: Avatar & Popup Menu */}
@@ -144,6 +145,7 @@ const LogoutModal = ({ show, onClose, onLogout }) => {
 
 /* USER MENU COMPONENT (Avatar Popup)*/
 const UserMenu = ({ currentUser, onLogoutClick }) => {
+    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const menuRef = useRef(null);
 
@@ -164,6 +166,10 @@ const UserMenu = ({ currentUser, onLogoutClick }) => {
         };
     }, []);
 
+    const handleMyProfile = () => {
+        navigate("/admin/my_profile");
+    };
+
     return (
         <div className="user-menu" ref={menuRef}>
             <Avatar
@@ -176,7 +182,7 @@ const UserMenu = ({ currentUser, onLogoutClick }) => {
 
             {open && (
                 <div className="profile-popup">
-                    <div className="popup-link" onClick={() => setmyProfileShow(true)}>
+                    <div className="popup-link" onClick={handleMyProfile}>
                         My Profile
                     </div>
                     <div className="popup-link logout-btn" onClick={onLogoutClick}>
@@ -184,7 +190,7 @@ const UserMenu = ({ currentUser, onLogoutClick }) => {
                     </div>
                 </div>
             )}
-            <AdminProfile show={myProfileShow} handleClose={() => setmyProfileShow(false)} currentUser={currentUser} />
+
         </div>
     );
 };

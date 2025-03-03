@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./../../styles/dashboard_styles/AdminTrainerSectionStyle.css";
 import AddTrainerCard from './../../components/cards/AddTrainerCard.jsx';
 import { registerTrainer, getAllTrainers, deleteTrainer } from './../../apis/Api.js';
+import { deleteUserSuccess } from './../../redux/reducers/userSlice.js';
 import { useDispatch } from "react-redux";
 
 const AdminTrainerSection = ({ currentUser }) => {
@@ -144,6 +145,7 @@ const AdminTrainerSection = ({ currentUser }) => {
             })
                 .then((res) => {
                     fetchAllTrainers();
+                    resetForm();
                     alert(res.data.message || "Trainer Account created successfully!");
 
                 })
@@ -161,11 +163,14 @@ const AdminTrainerSection = ({ currentUser }) => {
 
     // Handle account Delete a trainer from the list
     const handleDeleteTrainer = async (trainerId) => {
+        console.log(trainerId);
+        
         try {
-            const response = await deleteTrainer({ trainerId });
+            const response = await deleteTrainer(trainerId);
             if (response.data && response.data.message) {
                 alert(response.data.message);
                 fetchAllTrainers();
+                dispatch(deleteUserSuccess());
             }
         }
         catch (error) {

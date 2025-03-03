@@ -4,7 +4,7 @@ import './../../styles/cards_styles/AddTrainerCardStyle.css';
 import { Avatar } from "@mui/material";
 
 const AddTrainerCard = ({ trainer, onDelete }) => {
-    const { fullName, email, phoneNumber, experience, profilePicture } = trainer;
+    const { id, fullName, email, phoneNumber, experience, profilePicture } = trainer;
 
     // trainer's name as an avatar
     const avatarLetter = fullName ? fullName.charAt(0).toUpperCase() : "U";
@@ -35,7 +35,7 @@ const AddTrainerCard = ({ trainer, onDelete }) => {
                     </p>
                 </div>
             </div>
-            <Button variant="link" className="delete-btn" onClick={() => onDelete(trainer.id)}>
+            <Button variant="link" className="delete-btn" onClick={() => onDelete(id)}>
                 <div className="delete-icon">
                     <i className="bi bi-trash-fill" aria-hidden="true"></i>
                 </div>
