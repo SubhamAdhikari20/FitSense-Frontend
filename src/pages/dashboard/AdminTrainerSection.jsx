@@ -3,7 +3,7 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import "./../../styles/dashboard_styles/AdminTrainerSectionStyle.css";
 import AddTrainerCard from './../../components/cards/AddTrainerCard.jsx';
-import { registerTrainer, getAllTrainers, deleteTrainer } from './../../apis/Api.js';
+import { registerTrainer, getAllTrainersByAdmin, deleteTrainerByAdmin } from './../../apis/Api.js';
 import { deleteUserSuccess } from './../../redux/reducers/userSlice.js';
 import { useDispatch } from "react-redux";
 
@@ -109,7 +109,7 @@ const AdminTrainerSection = ({ currentUser }) => {
 
     const fetchAllTrainers = async () => {
         try {
-            const response = await getAllTrainers();
+            const response = await getAllTrainersByAdmin();
             // Assuming your backend returns { getAllTrainers: [...] }
             if (response?.data?.trainers || []) {
                 setTrainers(response.data.trainers);
@@ -163,22 +163,25 @@ const AdminTrainerSection = ({ currentUser }) => {
 
     // Handle account Delete a trainer from the list
     const handleDeleteTrainer = async (trainerId) => {
-        console.log(trainerId);
+        if (!window.confirm("Are you sure you want to delete this account?")) {
+            return;
+        }
         
         try {
-            const response = await deleteTrainer(trainerId);
+            const response = await deleteTrainerByAdmin({ id: trainerId });
             if (response.data && response.data.message) {
                 alert(response.data.message);
                 fetchAllTrainers();
-                dispatch(deleteUserSuccess());
             }
         }
         catch (error) {
             console.error("Failed to delete account:", error);
-            alert(error?.response?.data?.error || "Failed to delete account. Please try again later.");
+            alert(error?.response?.data?.error || "Failed to delete account. Please try again.");
         }
-        const filtered = trainers.filter((t) => t.email !== email);
-        setTrainers(filtered);
+
+        // const filtered = trainers.filter((t) => t.id !== trainerId);
+        // setTrainers(filtered);
+        fetchAllTrainers();
     };
 
     // Add form reset function

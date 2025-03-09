@@ -45,8 +45,6 @@ const NavbarLanding = ({ navbarStyle }) => {
                             <Nav.Link href="#trainer-section">
                                 Get a Trainer
                             </Nav.Link>
-                            <Nav.Link href="#courses-section">Courses</Nav.Link>
-                            <Nav.Link href="#blog-section">Blog</Nav.Link>
                             <Nav.Link href="#about-section">About</Nav.Link>
                             <Nav.Link href="#contact-section">Contact</Nav.Link>
                             <Nav.Link as={Link} to="/">

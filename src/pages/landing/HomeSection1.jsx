@@ -58,25 +58,6 @@ const HomeSection1 = () => {
                                 </div>
                             </Carousel.Item>
                         </Carousel>
-
-                        {/* <div className="position:relative">
-                            <div>
-                                <h1>
-                                    Elevate Thyself Live
-                                </h1>
-
-                                <h1>
-                                    Live
-                                </h1>
-
-                                <h1 id="element" style={{ display: "inline-block" }}></h1>
-                            </div> */}
-
-                        {/* <div className="badge_text">
-                                <h4 className="h4_xs">Only</h4>
-                            </div> */}
-
-                        {/* </div> */}
                     </Col>
 
                     <Col className="p-0 column2">
@@ -95,12 +76,6 @@ const HomeSection1 = () => {
                             </Link>
                         </div>
                     </Col>
-
-                    {/* <Col lg={5} className="hero_name text-center">
-                        <div className="">
-
-                        </div>
-                    </Col> */}
                 </Row>
 
                 <Row>

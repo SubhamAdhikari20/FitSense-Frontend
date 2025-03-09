@@ -345,20 +345,6 @@ const SignUpSection = () => {
                                 </Button>
                                 {/* </div> */}
                             </Form>
-
-                            {/* Social Signup */}
-                            {/* <div className="text-center mt-3">
-                                <p className="text-muted mb-2">Sign Up With</p>
-                                <div>
-                                    <Button
-                                        variant="outline-primary"
-                                        className="social-btn"
-                                    >
-                                        <i class="bi bi-google"></i>
-                                    </Button>
-                                </div>
-                            </div> */}
-
                             <p className="text-center mt-2 mb-0">
                                 Already have an account?{" "}
                                 <Link to="/login">Login</Link>

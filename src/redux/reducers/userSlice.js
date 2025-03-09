@@ -33,7 +33,7 @@ export const userSlice = createSlice({
         deleteUserSuccess: (state) => {
             state.currentUser = null;
             localStorage.removeItem("fitsense-app-token");
-        },
+        }
     },
 });
 
