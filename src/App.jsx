@@ -20,6 +20,7 @@ import AdminTrainer from './pages/dashboard/AdminTrainer.jsx';
 import UserProfile from './pages/dashboard/UserProfile.jsx';
 import TrainerProfile from './pages/dashboard/TrainerProfile.jsx';
 import AdminProfile from "./pages/dashboard/AdminProfile.jsx";
+import UserGetTrainers from './pages/dashboard/UserGetTrainers.jsx';
 
 function App() {
     const { currentUser } = useSelector((state) => state.user);
@@ -35,7 +36,7 @@ function App() {
                                 <Route path="/" element={<Navigate to="/user/dashboard" />} />
                                 <Route path="/user/dashboard" element={<Dashboard currentUser={currentUser}/>} />
                                 <Route path="/user/workouts" element={<Workouts currentUser={currentUser} />} />
-                                {/* <Route path="/user/get-trainers" element={<AdminTrainer />} /> */}
+                                <Route path="/user/get-trainers" element={<UserGetTrainers />} />
                                 <Route path="/user/my_profile" element={<UserProfile currentUser={currentUser} />} />
                             </Routes>
                         </div>

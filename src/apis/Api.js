@@ -17,7 +17,7 @@ export const registerUser = async (data) => Api.post("/user/register_user", data
 export const loginUser = async (data) => Api.post("/user/login_user", data);
 export const resetPasswordUser = async (data) => Api.post("/user/forgot_password", data);
 
-export const uploadUserProfilePicture = async (formData) =>{
+export const uploadUserProfilePicture = async (formData) => {
     return Api.put("/user/profile_picture", formData, {
         headers: { "Content-Type": "multipart/form-data" },
     });
@@ -32,7 +32,7 @@ export const updateProfileDetails = async (data) => {
         headers: { Authorization: `Bearer ${token}` }
     });
 };
-    
+
 
 export const deleteUser = async (data) => {
     const token = localStorage.getItem("fitsense-app-token");
@@ -52,6 +52,46 @@ export const getDashboardDetails = async (token) =>
     Api.get("/user/dashboard", {
         headers: { Authorization: `Bearer ${token}` },
     });
+
+export const getAllTrainersByUser = async () => {
+    const token = localStorage.getItem("fitsense-app-token");
+    if (!token) {
+        throw new Error("No authentication token found");
+    }
+    return await Api.get(`/user/get_all_trainers`, {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+}
+
+// Booked Trainers
+export const getAllBookedTrainersByUser = async () => {
+    const token = localStorage.getItem("fitsense-app-token");
+    if (!token) {
+        throw new Error("No authentication token found");
+    }
+    return await Api.get(`/user/get_all_booked_trainers`, {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+};
+
+// Book a trainer
+export const bookTrainer = async (data) => {
+    const token = localStorage.getItem("fitsense-app-token");
+    if (!token) throw new Error("No authentication token found");
+    return await Api.post(`/user/book_trainer`, data, {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+};
+
+// Cancel a trainer booking
+export const cancelTrainerBooking = async (trainerId) => {
+    const token = localStorage.getItem("fitsense-app-token");
+    if (!token) throw new Error("No authentication token found");
+
+    return await Api.delete(`/user/cancel_trainer_booking/${trainerId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+};
 
 
 // User Workout
@@ -154,7 +194,7 @@ export const loginTrainer = async (data) => Api.post("/trainer/login_trainer", d
 export const resetPasswordTrainer = async (data) => Api.post("/trainer/forgot_password", data);
 
 
-export const uploadTrainerProfilePicture = async (formData) =>{
+export const uploadTrainerProfilePicture = async (formData) => {
     return Api.put("/trainer/profile_picture", formData, {
         headers: { "Content-Type": "multipart/form-data" },
     });
@@ -169,7 +209,7 @@ export const updateTrainerProfileDetails = async (data) => {
         headers: { Authorization: `Bearer ${token}` }
     });
 };
-    
+
 
 export const deleteTrainer = async (data) => {
     const token = localStorage.getItem("fitsense-app-token");
@@ -202,7 +242,7 @@ export const loginAdmin = async (data) => Api.post("/admin/login_admin", data);
 export const resetPasswordAdmin = async (data) => Api.post("/admin/forgot_password", data);
 
 
-export const uploadAdminProfilePicture = async (formData) =>{
+export const uploadAdminProfilePicture = async (formData) => {
     return Api.put("/admin/profile_picture", formData, {
         headers: { "Content-Type": "multipart/form-data" },
     });
@@ -217,7 +257,7 @@ export const updateAdminProfileDetails = async (data) => {
         headers: { Authorization: `Bearer ${token}` }
     });
 };
-    
+
 
 export const deleteAdmin = async (data) => {
     const token = localStorage.getItem("fitsense-app-token");

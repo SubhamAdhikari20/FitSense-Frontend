@@ -1,0 +1,36 @@
+.get_trainers-section .get_trainers-section-container {
+    margin: 0;
+    max-width: 100%;
+}
+
+
+.get_trainers-section .get_trainers-title {
+    padding: 0px 16px;
+    font-size: 25px;
+    font-weight: 500;
+    text-transform: none;
+}
+
+
+.get_trainers-section .get_trainers-section-container .get_trainers-row-wrapper .get_trainers-col {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 16px;
+    gap: 22px;
+}
+
+.get_trainers-section .get_trainers-section-container .get_trainers-card-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+
+.get_trainers-section .no-booked {
+    padding: 0px 16px;
+    font-size: 22px;
+    font-style: italic;
+    text-transform: none;
+}
