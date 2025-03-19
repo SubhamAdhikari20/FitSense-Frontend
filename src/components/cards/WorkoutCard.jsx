@@ -10,6 +10,7 @@ const WorkoutCard = ({
     onEdit,
     onDelete,
     onToggleCompletion,
+    disableToggle = false
 }) => {
     const [loading, setLoading] = useState(false);
 
@@ -47,6 +48,7 @@ const WorkoutCard = ({
                                 variant="link"
                                 className="check-btn p-1"
                                 onClick={() => onToggleCompletion(workout.id)}
+                                disabled={disableToggle}
                             >
                                 <i className={`bi ${workout?.completed ? "bi-check-circle-fill" : "bi-check-circle"}`}
                                     style={{ color: workout?.completed ? "green" : "inherit", fontSize: "12px" }} />

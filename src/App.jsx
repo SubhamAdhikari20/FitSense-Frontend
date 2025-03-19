@@ -21,10 +21,11 @@ import UserProfile from './pages/dashboard/UserProfile.jsx';
 import TrainerProfile from './pages/dashboard/TrainerProfile.jsx';
 import AdminProfile from "./pages/dashboard/AdminProfile.jsx";
 import UserGetTrainers from './pages/dashboard/UserGetTrainers.jsx';
+import TrainerAddWorkoutForUser from './pages/dashboard/TrainerAddWorkoutForUser.jsx';
 
 function App() {
     const { currentUser } = useSelector((state) => state.user);
-
+    
     return (
         <ThemeProvider theme={lightTheme}>
             <Router>
@@ -48,6 +49,7 @@ function App() {
                                 <Route path="/trainer/dashboard" element={<TrainerDashboard currentUser={currentUser}/>} />
                                 <Route path="/trainer/trainees" element={<TrainerTrainee />} />
                                 <Route path="/trainer/my_profile" element={<TrainerProfile currentUser={currentUser} />} />
+                                <Route path="/trainer/add-workout/:id" element={<TrainerAddWorkoutForUser currentUser={currentUser} />} />
                             </Routes>
                         </div>
                     ) : (

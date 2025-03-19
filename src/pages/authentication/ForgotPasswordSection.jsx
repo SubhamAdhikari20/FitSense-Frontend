@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Col, Container, Row, Form, Button, FloatingLabel } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import './../../styles/authentication_styles/ForgotPasswordSectionStyle.css';
-import { resetPasswordUser } from '../../apis/Api.js';
+import { resetPasswordUser, resetPasswordTrainer, resetPasswordAdmin, getUserByEmail, getTrainerByEmail, getAdminByEmail } from '../../apis/Api.js';
 
 const ForgotPasswordSection = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -40,7 +40,7 @@ const ForgotPasswordSection = () => {
             setButtonDisabled(false);
             return false;
         }
-        
+
         if (!/^\S+@\S+\.\S+$/.test(email)) {
             alert("Please enter a valid email address");
             setLoading(false);
@@ -58,6 +58,7 @@ const ForgotPasswordSection = () => {
         return true;
     };
 
+    /*
     const handleResetPassword = async (e) => {
         e.preventDefault(); 
         setLoading(true);
@@ -78,6 +79,83 @@ const ForgotPasswordSection = () => {
                 });
         }
     }
+    */
+
+    const handleResetPassword = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setButtonDisabled(true);
+
+        if (!validateInputs()) {
+            setLoading(false);
+            setButtonDisabled(false);
+            return;
+        }
+
+        try {
+            // Check in User table
+            let userFound = false;
+            try {
+                const userResp = await getUserByEmail({ email });
+                if (userResp.data?.user) {
+                    await resetPasswordUser({ email, newPassword });
+                    alert("Password reset successful for user!");
+                    navigate("/login");
+                    userFound = true;
+                    return;
+                }
+            } catch (userError) {
+                if (userError.response?.status !== 404) {
+                    console.error("User reset error:", userError);
+                    throw new Error("Error resetting user password");
+                }
+            }
+
+            // Check in Trainer table
+            try {
+                const trainerResp = await getTrainerByEmail({ email });
+                if (trainerResp.data?.trainer) {
+                    await resetPasswordTrainer({ email, newPassword });
+                    alert("Password reset successful for trainer!");
+                    navigate("/login");
+                    userFound = true;
+                    return;
+                }
+            } catch (trainerError) {
+                if (trainerError.response?.status !== 404) {
+                    console.error("Trainer reset error:", trainerError);
+                    throw new Error("Error resetting trainer password");
+                }
+            }
+
+            // Check in Admin table
+            try {
+                const adminResp = await getAdminByEmail({ email });
+                if (adminResp.data?.admin) {
+                    await resetPasswordAdmin({ email, newPassword });
+                    alert("Password reset successful for admin!");
+                    navigate("/login");
+                    userFound = true;
+                    return;
+                }
+            } catch (adminError) {
+                if (adminError.response?.status !== 404) {
+                    console.error("Admin reset error:", adminError);
+                    throw new Error("Error resetting admin password");
+                }
+            }
+
+            if (!userFound) {
+                alert("Email not found in our system");
+            }
+        } catch (error) {
+            alert(error.message || "Password reset failed. Please try again.");
+            console.error("Reset error:", error);
+        } finally {
+            setLoading(false);
+            setButtonDisabled(false);
+        }
+    };
 
 
     return (

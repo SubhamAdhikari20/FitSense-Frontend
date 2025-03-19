@@ -4,7 +4,6 @@ import "./../../styles/dashboard_styles/WorkoutsSectionStyle.css";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateCalendar } from "@mui/x-date-pickers";
-import { CircularProgress } from "@mui/material";
 import { addWorkout, updateWorkout, deleteWorkout, getWorkouts, toggleWorkoutCompletion } from './../../apis/Api.js';
 import WorkoutCard from "../../components/cards/WorkoutCard";
 import Dropdown from './../../components/buttons/Dropdown1.jsx';
@@ -30,9 +29,6 @@ const WorkoutsSection = ({ currentUser }) => {
         const now = new Date();
         return now // YYYY-MM-DD format
     });
-
-    // const formattedDate = `${date.$y}-${String(date.$M + 1).padStart(2, '0')}-${String(date.$D).padStart(2, '0')}`;
-    // setDate(formattedDate);
 
     // Loading state for form submission
     const [loading, setLoading] = useState(false);
@@ -393,6 +389,7 @@ const WorkoutsSection = ({ currentUser }) => {
                                             onEdit={handleEditWorkout}
                                             onDelete={handleDeleteWorkout}
                                             onToggleCompletion={handleToggleCompletion}
+                                            disableToggle={currentUser.role === "trainer"}
                                         />
                                     ))}
                                     {todaysWorkouts.pending.length === 0 && (

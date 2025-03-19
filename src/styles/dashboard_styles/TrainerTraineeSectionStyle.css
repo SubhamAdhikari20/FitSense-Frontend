@@ -1,0 +1,36 @@
+.get_trainees-section .get_trainees-section-container {
+    margin: 0;
+    max-width: 100%;
+}
+
+
+.get_trainees-section .get_trainees-section-title {
+    padding: 0px 16px;
+    font-size: 25px;
+    font-weight: 500;
+    text-transform: none;
+}
+
+
+.get_trainees-section .get_trainees-section-container .get_trainees-row-wrapper .get_trainees-col {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 16px;
+    gap: 22px;
+}
+
+.get_trainees-section .get_trainees-section-container .get_trainees-card-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+
+.get_trainees-section .no-booked {
+    padding: 0px 16px;
+    font-size: 22px;
+    font-style: italic;
+    text-transform: none;
+}

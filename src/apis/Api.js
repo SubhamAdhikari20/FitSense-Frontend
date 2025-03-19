@@ -46,7 +46,18 @@ export const deleteUser = async (data) => {
 };
 
 export const getUserByEmail = async (data) =>
-    Api.get("/user/view_user_by_email", { params: data });
+    Api.get("/user/get_user_by_email", { params: data });
+
+
+export const getUserById = async (userId) => {
+    const token = localStorage.getItem("fitsense-app-token");
+    if (!token) {
+        throw new Error("No authentication token found");
+    }
+    return await Api.get(`/user/get_user_by_id/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+};
 
 export const getDashboardDetails = async (token) =>
     Api.get("/user/dashboard", {
@@ -135,6 +146,10 @@ export const getWorkouts = async (token, date) =>
         params: { date },
     });
 
+export const getTraineeWorkoutsByTrainer = async (token, date, userId) => await Api.get(`/user/workout/get_all_workouts_by_trainer`, {
+    headers: { Authorization: `Bearer ${token}` },
+    params: { date, userId }
+});
 
 export const toggleWorkoutCompletion = async (data) => {
     const token = localStorage.getItem("fitsense-app-token");
@@ -235,6 +250,16 @@ export const getAllTrainers = async () => {
     });
 }
 
+// Get Trainees who booked for Trainers
+export const getAllTrainees = async () => {
+    const token = localStorage.getItem("fitsense-app-token");
+    if (!token) {
+        throw new Error("No authentication token found");
+    }
+    return await Api.get(`/trainer/get_all_trainees`, {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+};
 
 
 // Admin

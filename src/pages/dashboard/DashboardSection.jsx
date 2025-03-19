@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Container, Button, Row, Col } from "react-bootstrap";
-import styled from "styled-components";
 import './../../styles/dashboard_styles/DashboardSectionStyle.css';
 import { counts } from './../../utils/data';
 import CountsCard from './../../components/cards/CountsCard.jsx';
@@ -13,7 +12,7 @@ import { getWorkouts, toggleWorkoutCompletion, getLifeTimeWorkouts, getWeeklySta
 import { getCurrentWeekRange, getAdjacentWeek } from './../../utils/dateHelpers.js';
 
 
-const DashboardSection = ({currentUser}) => {
+const DashboardSection = ({ currentUser }) => {
     const [stats, setStats] = useState({
         today: {
             totalCalories: 0,
@@ -57,7 +56,7 @@ const DashboardSection = ({currentUser}) => {
         // fetchLifetimeStats();
         // fetchWeeklyStats(stats.selectedWeek);
         getTodaysWorkout();
-    }, [date]);
+    }, [date ]);
 
 
     // Fetch lifetime statistics
@@ -245,14 +244,35 @@ const DashboardSection = ({currentUser}) => {
     };
 
     // Process category data for pie chart
+    // const processCategoryData = (workouts) => {
+    //     const categoryMap = {};
+    //     workouts.forEach(workout => {
+    //         const calories = Number(workout.caloriesBurned) || 0;
+    //         if (calories > 0) {
+    //             categoryMap[workout.category] = (categoryMap[workout.category] || 0) + calories;
+    //         }
+    //     });
+    //     return Object.entries(categoryMap).map(([label, value], id) => ({
+    //         id,
+    //         label,
+    //         value: Number(value.toFixed(2))
+    //     }));
+    // };
+    
+
     const processCategoryData = (workouts) => {
         const categoryMap = {};
+
         workouts.forEach(workout => {
-            const calories = Number(workout.caloriesBurned) || 0;
-            if (calories > 0) {
-                categoryMap[workout.category] = (categoryMap[workout.category] || 0) + calories;
+            if (workout.completed) { // Only count completed workouts
+                const calories = Number(workout.caloriesBurned) || 0;
+                if (calories > 0) {
+                    categoryMap[workout.category] =
+                        (categoryMap[workout.category] || 0) + calories;
+                }
             }
         });
+
         return Object.entries(categoryMap).map(([label, value], id) => ({
             id,
             label,
@@ -284,7 +304,7 @@ const DashboardSection = ({currentUser}) => {
                                 />
                             ))}
                             {/* <AddWorkoutCard/> */}
-                            <BMICard currentUser={currentUser}/>
+                            <BMICard currentUser={currentUser} />
                         </Col>
 
                     </Row>

@@ -1,0 +1,197 @@
+.trainer_add_workouts-section .trainer_add_workouts-section-container {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0px;
+    overflow: hidden;
+}
+
+
+.trainer_add_workouts-section .trainer_add_workouts-section-container .row-wrapper {
+    flex: 1;
+    max-width: 1600px;
+    display: flex;
+    gap: 22px;
+    padding: 0px 16px;
+}
+
+.trainer_add_workouts-section .trainer_add_workouts-section-container .row-wrapper .col-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex: 0.2;
+    height: fit-content;
+    width: fit-content;
+    padding: 0px;
+}
+
+.trainer_add_workouts-section .trainer_add_workouts-section-container .row-wrapper .col-left h1 {
+    font-weight: 600;
+    font-size: 22px;
+    text-transform: none;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.get_trainees-profile-img{
+    margin-bottom: 15px;
+}
+
+.get_trainees-profile-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.get_trainees-profile-info .get_trainees-profile-title{
+    margin-bottom: 5px !important;
+    color:black !important;
+}
+
+.get_trainees-profile-info .get_trainees-profile-desc{
+    margin-bottom: 5px;
+}
+
+.trainer_add_workouts-section .trainer_add_workouts-section-container .row-wrapper .col-right {
+    flex: 1;
+    max-width: 70%;
+}
+
+.trainer_add_workouts-section .trainer_add_workouts-section-container .row-wrapper .col-right .col-right-section {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 16px;
+    gap: 22px;
+    padding: 0px 16px;
+}
+
+.trainer_add_workouts-section .trainer_add_workouts-section-container .row-wrapper .col-right h1 {
+    font-size: 22px;
+    text-transform: none;
+    color: var(--primary);
+
+}
+
+.trainer_add_workouts-section .trainer_add_workouts-section-container .row-wrapper .col-right .col-right-section .card-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+    overflow-y: scroll;
+    max-height: 675px;
+    padding: 25px;
+}
+
+
+/* Left Workout Container */
+.trainer_add_workouts-section .left-rainer_add_workouts-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: fit-content;
+    max-width: 30%;
+    gap: 15px;
+}
+
+/* Add Workout */
+.trainer_add_workouts-section .trainer_add_workouts-section-container .workout-form-wrapper {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 1rem;
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    box-shadow: 1px 6px 20px 0px var(--card-box-shadow);
+    align-items: center;
+    height: fit-content;
+    width: fit-content;
+}
+
+.workout-form-wrapper h1 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 20px;
+    text-transform: none;
+    color: var(--primary);
+}
+
+/* Dropdown */
+/* .dropdown-menu.show{
+    max-height: 200px;
+} */
+
+.dropdown-menu.show .list-unstyled {
+    margin-bottom: 5px;
+    max-height: 175px;
+    overflow-y: scroll;
+}
+
+
+/* The "Add Trainer" button: coral or salmon color */
+.trainer_add_workouts-section .trainer_add_workouts-section-container .add-workout-btn {
+    background-color: #ff6f61;
+    width: 100%;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    text-transform: none;
+    --mdb-btn-box-shadow: 0 4px 9px -4px rgba(var(--mdb-box-shadow-color-rgb), 0.35);
+}
+
+
+/* Completed Task */
+.completed-workouts{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+}
+
+.completed-workouts .workout-card {
+    opacity: 0.7;
+    background-color: #f8f9fa;
+    border-left: 4px solid #28a745;
+}
+
+.no-workouts {
+    text-align: center;
+    color: #6c757d;
+    padding: 1rem;
+    border: 1px dashed #dee2e6;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+
+.trainer_add_workouts-section .trainer_add_workouts-section-container .add-trainer-btn:hover {
+    background-color: #ff5a4e;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .trainer_add_workouts-section .trainer_add_workouts-section-container .row-wrapper {
+        gap: 12px;
+        flex-direction: column;
+    }
+
+    .trainer_add_workouts-section .trainer_add_workouts-section-container .row-wrapper .col-left h1 {
+        font-size: 14px;
+    }
+
+    .trainer_add_workouts-section .trainer_add_workouts-section-container .row-wrapper .col-right-section {
+        gap: 12px;
+    }
+
+    .trainer_add_workouts-section .trainer_add_workouts-section-container .row-wrapper .col-right .col-right-section .card-wrapper {
+        gap: 12px;
+    }
+
+
+}
+
+
+
